@@ -15,6 +15,10 @@ docker/logs/*.log.*
 docker/data/dump.rdb
 docker/data/*.json
 docker/data/*.parquet
+docker/data/*.csv
 docker/data/recommendations/*
+
+docker/data/__MACOSX
+docker/data/__MACOSX/*
 
 

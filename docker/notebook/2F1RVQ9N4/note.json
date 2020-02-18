@@ -1,0 +1,764 @@
+{
+  "paragraphs": [
+    {
+      "title": "Reload the GoodReads Books DataSet",
+      "text": "%spark\nimport org.apache.spark.sql._\nimport org.apache.spark.sql.functions._\nimport org.apache.spark.sql.types._\nimport spark.implicits._\n\nfinal val BaseFilePath \u003d \"file:///learn\"\nval booksDDL: String \u003d \"`bookID` INT,`title` STRING,`authors` STRING,`average_rating` STRING,`isbn` STRING,`isbn13` STRING,`language_code` STRING,`num_pages` STRING,`ratings_count` INT,`text_reviews_count` INT\"\nval booksSchema \u003d StructType.fromDDL(booksDDL)\nval df \u003d spark.read\n    .format(\"csv\")\n    .option(\"delimiter\",\",\")\n    .option(\"header\", \"true\")\n    .option(\"inferSchema\", \"false\")\n    .schema(booksSchema)\n    .load(s\"$BaseFilePath/books.csv\")\n    .toDF(\"bookID\",\"title\",\"authors\",\"average_rating\",\"isbn\",\"isbn13\",\"language_code\",\"num_pages\",\"ratings_count\",\"text_reviews_count\")\ndf.createOrReplaceTempView(\"books\")",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:29:27.196",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import org.apache.spark.sql._\nimport org.apache.spark.sql.functions._\nimport org.apache.spark.sql.types._\nimport spark.implicits._\nBaseFilePath: String(\"file:///learn\") \u003d file:///learn\nbooksDDL: String \u003d `bookID` INT,`title` STRING,`authors` STRING,`average_rating` STRING,`isbn` STRING,`isbn13` STRING,`language_code` STRING,`num_pages` STRING,`ratings_count` INT,`text_reviews_count` INT\nbooksSchema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(bookID,IntegerType,true), StructField(title,StringType,true), StructField(authors,StringType,true), StructField(average_rating,StringType,true), StructField(isbn,StringType,true), StructField(isbn13,StringType,true), StructField(language_code,StringType,true), StructField(num_pages,StringType,true), StructField(ratings_count,Inte..."
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733219_-1795689949",
+      "id": "20191028-205457_2007953720",
+      "dateCreated": "2020-02-17 18:22:13.219",
+      "dateStarted": "2020-02-17 18:29:27.236",
+      "dateFinished": "2020-02-17 18:29:30.781",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Simplify finding Missing Values",
+      "text": "%spark\ndef missingValues(df: DataFrame): DataFrame \u003d {\n    df.schema.map {\n        case StructField(name: String, _: StringType, _, _) \u003d\u003e\n            // will do isNull orEmpty check here - and count as missing values\n            (name, df.where(col(name).isNull.or(col(name).equalTo(\"\"))).count())\n        case StructField(name: String, _, _, _) \u003d\u003e\n            (name, df.where(col(name).isNull).count)\n    }.toDF(\"name\", \"missing\")\n}",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:29:34.228",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "missingValues: (df: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733225_1362796597",
+      "id": "20191028-211758_1183307709",
+      "dateCreated": "2020-02-17 18:22:13.225",
+      "dateStarted": "2020-02-17 18:29:34.263",
+      "dateFinished": "2020-02-17 18:29:35.683",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nval missingValuesDF \u003d df.transform(missingValues)\nmissingValuesDF.show(true)",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:29:41.098",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------------+-------+\n|              name|missing|\n+------------------+-------+\n|            bookID|      0|\n|             title|      0|\n|           authors|      0|\n|    average_rating|      0|\n|              isbn|      0|\n|            isbn13|      0|\n|     language_code|      0|\n|         num_pages|      0|\n|     ratings_count|      0|\n|text_reviews_count|      0|\n+------------------+-------+\n\nmissingValuesDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [name: string, missing: bigint]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733225_-418205349",
+      "id": "20191028-211836_954293158",
+      "dateCreated": "2020-02-17 18:22:13.225",
+      "dateStarted": "2020-02-17 18:29:41.148",
+      "dateFinished": "2020-02-17 18:29:43.888",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Simplify finding Distinct Values",
+      "text": "%spark\ndef distinctColumnValues(df: DataFrame): DataFrame \u003d {\n    df.schema.map { r \u003d\u003e\n      (r.name, df.where(col(r.name).isNotNull)\n        .select(col(r.name))\n        .distinct()\n        .count())\n    }.toDF(\"name\", \"distinct\")\n}",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:29:52.568",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "distinctColumnValues: (df: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733225_-706328964",
+      "id": "20191028-211922_657279969",
+      "dateCreated": "2020-02-17 18:22:13.225",
+      "dateStarted": "2020-02-17 18:29:52.601",
+      "dateFinished": "2020-02-17 18:29:53.814",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nval distinctValuesDF \u003d df.transform(distinctColumnValues)\ndistinctValuesDF.show(true)",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:29:56.762",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------------+--------+\n|              name|distinct|\n+------------------+--------+\n|            bookID|   13719|\n|             title|   12427|\n|           authors|    7605|\n|    average_rating|     221|\n|              isbn|   13719|\n|            isbn13|   13719|\n|     language_code|      35|\n|         num_pages|    1092|\n|     ratings_count|    6030|\n|text_reviews_count|    2025|\n+------------------+--------+\n\ndistinctValuesDF: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [name: string, distinct: bigint]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733225_323369532",
+      "id": "20191028-212014_1541440365",
+      "dateCreated": "2020-02-17 18:22:13.225",
+      "dateStarted": "2020-02-17 18:29:56.797",
+      "dateFinished": "2020-02-17 18:30:13.200",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Using DataFrame Columnar Statistics to Explore the Content of the Data\nExploring your data is essential to understanding the following\n1. Has the data been imported correctly\n2. Can the data be used to answer machine learning questions\n3. Does the data have characteristics that make it work better for some ML Algorithms",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:33:56.392",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eUsing DataFrame Columnar Statistics to Explore the Content of the Data\u003c/h3\u003e\n\u003cp\u003eExploring your data is essential to understanding the following\u003cbr/\u003e1. Has the data been imported correctly\u003cbr/\u003e2. Can the data be used to answer machine learning questions\u003cbr/\u003e3. Does the data have characteristics that make it work better for some ML Algorithms\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581964273536_1545073971",
+      "id": "20200217-183113_430403339",
+      "dateCreated": "2020-02-17 18:31:13.536",
+      "dateStarted": "2020-02-17 18:33:56.394",
+      "dateFinished": "2020-02-17 18:33:56.422",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\ndef columnStats(df: DataFrame) \u003d {\n    df.schema.map { r \u003d\u003e\n     val colStats \u003d df.select(col(r.name)).describe()\n     /*val colStats \u003d df.select(col(r.name)).where(col(r.name).isNotNull).describe()*/\n     colStats.show()\n    }\n}",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:30:32.572",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "columnStats: (df: org.apache.spark.sql.DataFrame)Seq[Unit]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733226_-2019443911",
+      "id": "20191028-212049_1743638308",
+      "dateCreated": "2020-02-17 18:22:13.226",
+      "dateStarted": "2020-02-17 18:30:32.610",
+      "dateFinished": "2020-02-17 18:30:33.547",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\ncolumnStats(df)",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:30:37.084",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+------------------+\n|summary|            bookID|\n+-------+------------------+\n|  count|             13719|\n|   mean|22160.579269626065|\n| stddev|13699.603351218657|\n|    min|                 1|\n|    max|             47709|\n+-------+------------------+\n\n+-------+--------------------+\n|summary|               title|\n+-------+--------------------+\n|  count|               13719|\n|   mean|              1900.8|\n| stddev|  113.92629196107458|\n|    min|  said the shotgu...|\n|    max|魔戒首部曲：魔戒現身|\n+-------+--------------------+\n\n+-------+--------------------+\n|summary|             authors|\n+-------+--------------------+\n|  count|               13719|\n|   mean|                null|\n| stddev|                null|\n|    min|A.B. Yehoshua-Hil...|\n|    max|Éric-Emmanuel Sch...|\n+-------+--------------------+\n\n+-------+--------------------+\n|summary|      average_rating|\n+-------+--------------------+\n|  count|               13719|\n|   mean|  3.9306198045792398|\n| stddev|   0.357893063472285|\n|    min| Jr.-C.S. Lewis-P...|\n|    max|                5.00|\n+-------+--------------------+\n\n+-------+--------------------+\n|summary|                isbn|\n+-------+--------------------+\n|  count|               13719|\n|   mean| 1.039560314259837E9|\n| stddev|1.5971389842051237E9|\n|    min|                0.00|\n|    max|          9998691567|\n+-------+--------------------+\n\n+-------+--------------------+\n|summary|              isbn13|\n+-------+--------------------+\n|  count|               13719|\n|   mean|9.761170523550744E12|\n| stddev|4.321517728363313E11|\n|    min|       0008987059752|\n|    max|       9790007672386|\n+-------+--------------------+\n\n+-------+-------------------+\n|summary|      language_code|\n+-------+-------------------+\n|  count|              13719|\n|   mean| 9.7813082527492E12|\n| stddev|5.142332110626742E8|\n|    min|      9780674842113|\n|    max|                zho|\n+-------+-------------------+\n\n+-------+------------------+\n|summary|         num_pages|\n+-------+------------------+\n|  count|             13719|\n|   mean| 342.4027271401487|\n| stddev|252.65016483845298|\n|    min|                 0|\n|    max|               eng|\n+-------+------------------+\n\n+-------+------------------+\n|summary|     ratings_count|\n+-------+------------------+\n|  count|             13719|\n|   mean| 17759.02529338873|\n| stddev|112937.13120992463|\n|    min|                 0|\n|    max|           5629932|\n+-------+------------------+\n\n+-------+------------------+\n|summary|text_reviews_count|\n+-------+------------------+\n|  count|             13719|\n|   mean| 533.6063853050514|\n| stddev| 2528.600315867432|\n|    min|                 0|\n|    max|             93619|\n+-------+------------------+\n\nres24: Seq[Unit] \u003d List((), (), (), (), (), (), (), (), (), ())\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733226_-913537385",
+      "id": "20191028-212228_655299891",
+      "dateCreated": "2020-02-17 18:22:13.226",
+      "dateStarted": "2020-02-17 18:30:37.115",
+      "dateFinished": "2020-02-17 18:30:40.343",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Data Cleansing: Find where the CSV is broken.\n**hint**: Use `df.limit(1000)` as a starting point. And Check the `average_rating` `max` value",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:22:13.226",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eData Cleansing: Find where the CSV is broken.\u003c/h3\u003e\n\u003cp\u003e\u003cstrong\u003ehint\u003c/strong\u003e: Use \u003ccode\u003edf.limit(1000)\u003c/code\u003e as a starting point. And Check the \u003ccode\u003eaverage_rating\u003c/code\u003e \u003ccode\u003emax\u003c/code\u003e value\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733226_1117405087",
+      "id": "20191028-212911_18497608",
+      "dateCreated": "2020-02-17 18:22:13.226",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\ncolumnStats(df.select(\"average_rating\").limit(4000))",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:35:36.710",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+-------+------------------+\n|summary|    average_rating|\n+-------+------------------+\n|  count|              4000|\n|   mean|3.9424799999999838|\n| stddev|0.3232497056348976|\n|    min|              0.00|\n|    max|              5.00|\n+-------+------------------+\n\nres33: Seq[Unit] \u003d List(())\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733226_84364057",
+      "id": "20191028-212830_1786304880",
+      "dateCreated": "2020-02-17 18:22:13.226",
+      "dateStarted": "2020-02-17 18:35:36.741",
+      "dateFinished": "2020-02-17 18:35:37.773",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### hint: Use the min value in the `average_rating` to clean the books.csv\nOr just import `books_clean.csv` and skip this whole process.",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:22:13.227",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003ehint: Use the min value in the \u003ccode\u003eaverage_rating\u003c/code\u003e to clean the books.csv\u003c/h3\u003e\n\u003cp\u003eOr just import \u003ccode\u003ebooks_clean.csv\u003c/code\u003e and skip this whole process.\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733226_105466053",
+      "id": "20191028-223532_578155414",
+      "dateCreated": "2020-02-17 18:22:13.227",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "title": "Import the Clean Books Dataset",
+      "text": "%spark\nval forSchemaDF \u003d spark.read\n    .format(\"csv\")\n    .option(\"delimiter\",\",\")\n    .option(\"header\", \"true\")\n    .option(\"inferSchema\", \"true\")\n    .load(\"file:///odsc/books_clean.csv\")\n    .toDF(\"bookID\",\"title\",\"authors\",\"average_rating\",\"isbn\",\"isbn13\",\"language_code\",\"num_pages\",\"ratings_count\",\"text_reviews_count\")\nforSchemaDF.printSchema\nval schemaDDL \u003d forSchemaDF.schema.toDDL\n\nval correctSchema \u003d StructType.fromDDL(schemaDDL)\n\nval df \u003d spark.read\n    .format(\"csv\")\n    .option(\"delimiter\",\",\")\n    .option(\"header\", \"true\")\n    .option(\"inferSchema\", \"false\")\n    .schema(correctSchema)\n    .load(\"file:///odsc/books_clean.csv\")\n    .toDF(\"bookID\",\"title\",\"authors\",\"average_rating\",\"isbn\",\"isbn13\",\"language_code\",\"num_pages\",\"ratings_count\",\"text_reviews_count\")\n\ndf.createOrReplaceTempView(\"books\")",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:22:13.227",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "title": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "root\n |-- bookID: integer (nullable \u003d true)\n |-- title: string (nullable \u003d true)\n |-- authors: string (nullable \u003d true)\n |-- average_rating: double (nullable \u003d true)\n |-- isbn: string (nullable \u003d true)\n |-- isbn13: long (nullable \u003d true)\n |-- language_code: string (nullable \u003d true)\n |-- num_pages: integer (nullable \u003d true)\n |-- ratings_count: integer (nullable \u003d true)\n |-- text_reviews_count: integer (nullable \u003d true)\n\nforSchemaDF: org.apache.spark.sql.DataFrame \u003d [bookID: int, title: string ... 8 more fields]\nschemaDDL: String \u003d `bookID` INT,`title` STRING,`authors` STRING,`average_rating` DOUBLE,`isbn` STRING,`isbn13` BIGINT,`language_code` STRING,`num_pages` INT,`ratings_count` INT,`text_reviews_count` INT\ncorrectSchema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(bookID,IntegerType,true), StructField(title,StringType,true), StructField(authors,StringType,true), StructField(average_rating,DoubleType,true), StructField(isbn,StringType,true), StructField(isbn13,LongType,true), StructField(language_code,StringType,true), StructField(num_pages,IntegerType,true), StructField(ratings_count,IntegerType,true), StructField(text_reviews_count,IntegerType,true))\ndf: org.apache.spark.sql.Dat..."
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733227_-744394348",
+      "id": "20191028-212257_1356527838",
+      "dateCreated": "2020-02-17 18:22:13.227",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\ndef calculateColumnAggregates(df: DataFrame) \u003d {\n  val dfs \u003d df.schema.map { r \u003d\u003e\n    val name \u003d r.name\n    val colData \u003d df.select(col(name)).where(col(name).isNotNull)\n    colData.agg(\n        lit(name) as \"colname\",\n        count(name) as \"count\",\n        min(name) as \"min\",\n        avg(name) as \"avg\",\n        stddev_pop(name) as \"sd_pop\",\n        stddev_samp(name) as \"sd_sample\",\n        max(name) as \"max\"\n    ).toDF(\"column\", \"count\", \"min\", \"avg\", \"sd_pop\", \"sd_sample\", \"max\")\n  }\n  val toFold \u003d dfs.splitAt(1)\n  toFold._2.fold(toFold._1.head)(_.union(_)).toDF(\"column\", \"count\", \"min\", \"avg\", \"sd_pop\", \"sd_sample\", \"max\")\n}",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:22:13.227",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "calculateColumnAggregates: (df: org.apache.spark.sql.DataFrame)org.apache.spark.sql.DataFrame\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733227_1684751124",
+      "id": "20191028-225306_685360575",
+      "dateCreated": "2020-02-17 18:22:13.227",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\nval transformed \u003d df.transform(calculateColumnAggregates)",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:22:13.227",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "editorHide": false,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "transformed: org.apache.spark.sql.Dataset[org.apache.spark.sql.Row] \u003d [column: string, count: bigint ... 5 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733227_342494074",
+      "id": "20191028-224919_875811623",
+      "dateCreated": "2020-02-17 18:22:13.227",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\ntransformed.show",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:22:13.227",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "+------------------+-----+--------------------+--------------------+--------------------+--------------------+--------------------+\n|            column|count|                 min|                 avg|              sd_pop|           sd_sample|                 max|\n+------------------+-----+--------------------+--------------------+--------------------+--------------------+--------------------+\n|            bookID|13719|                   1|  22160.579269626065|  13699.104049046236|  13699.603351218657|               47709|\n|             title|13719|\"A\" Is for Abduct...|              1900.8|  101.89877329978023|  113.92629196107458|魔戒首部曲：魔戒現身|\n|           authors|13719|A.B. Yehoshua-Hil...|                null|                null|                null|          Zoë Heller|\n|    average_rating|13719|                 0.0|  3.9302645965449154| 0.35941851738651354| 0.35943161739990825|                 5.0|\n|              isbn|13719|          000100039X|1.0400414419183592E9|1.5970322791529374E9|1.5970961336252508E9|          9998691567|\n|            isbn13|13719|          8987059752|9.764023529842604E12|3.986808723515777...|3.986954033913417...|       9790007672386|\n|     language_code|13719|                 ale|                null|                null|                null|                 zho|\n|         num_pages|13719|                   0|   342.3807128799475|  252.60968004206282|  252.61888710856644|                6576|\n|     ratings_count|13719|                   0|   17759.09126029594|  112933.00608063104|  112937.12223998511|             5629932|\n|text_reviews_count|13719|                   0|   533.4399008674102|  2528.4736441251484|  2528.5658014209025|               93619|\n+------------------+-----+--------------------+--------------------+--------------------+--------------------+--------------------+\n\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733227_-369613113",
+      "id": "20191028-230546_1200964219",
+      "dateCreated": "2020-02-17 18:22:13.227",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Now that the Data is more or less fixed.\n1. Save the csv. For this example we are using Parquet",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:22:13.228",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eNow that the Data is more or less fixed.\u003c/h3\u003e\n\u003col\u003e\n  \u003cli\u003eSave the csv. For this example we are using Parquet\u003c/li\u003e\n\u003c/ol\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733228_1173351943",
+      "id": "20191028-232227_267452647",
+      "dateCreated": "2020-02-17 18:22:13.228",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\ndf.write.mode(\"overwrite\").parquet(\"/odsc/books_clean.parquet\")",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:22:13.228",
+      "config": {
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/scala",
+        "fontSize": 9.0,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": []
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733228_-102587621",
+      "id": "20191028-230601_1825955162",
+      "dateCreated": "2020-02-17 18:22:13.228",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### What we just learned\n1. How to create functions to find missing and distinct values\n2. How to generate column statistics using the `DataFrame.agg` function\n3. How to look for misimported data and fix it (Data Cleaning)\n4. How to write these efforts back to disk. `df.write`\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:22:13.228",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eWhat we just learned\u003c/h3\u003e\n\u003col\u003e\n  \u003cli\u003eHow to create functions to find missing and distinct values\u003c/li\u003e\n  \u003cli\u003eHow to generate column statistics using the \u003ccode\u003eDataFrame.agg\u003c/code\u003e function\u003c/li\u003e\n  \u003cli\u003eHow to look for misimported data and fix it (Data Cleaning)\u003c/li\u003e\n  \u003cli\u003eHow to write these efforts back to disk. \u003ccode\u003edf.write\u003c/code\u003e\u003c/li\u003e\n\u003c/ol\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733228_-2013368918",
+      "id": "20191028-232401_1826115568",
+      "dateCreated": "2020-02-17 18:22:13.228",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n### Up Next\n1. Learn how to use Exploratory Data Analysis techniques to find patterns in the data\n2. Use `Aggregations` and `Percentile` statistics to explore the data\n\nNext: [3-Spark-EDA](http://localhost:8080/#/notebook/2ESU4XURC)",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-17 18:22:13.229",
+      "config": {
+        "tableHide": false,
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "colWidth": 12.0,
+        "editorMode": "ace/mode/markdown",
+        "fontSize": 9.0,
+        "editorHide": true,
+        "results": {},
+        "enabled": true
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch3\u003eUp Next\u003c/h3\u003e\n\u003col\u003e\n  \u003cli\u003eLearn how to use Exploratory Data Analysis techniques to find patterns in the data\u003c/li\u003e\n  \u003cli\u003eUse \u003ccode\u003eAggregations\u003c/code\u003e and \u003ccode\u003ePercentile\u003c/code\u003e statistics to explore the data\u003c/li\u003e\n\u003c/ol\u003e\n\u003cp\u003eNext: \u003ca href\u003d\"http://localhost:8080/#/notebook/2ESU4XURC\"\u003e3-Spark-EDA\u003c/a\u003e\u003c/p\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1581963733228_49143521",
+      "id": "20191028-232834_1961855414",
+      "dateCreated": "2020-02-17 18:22:13.228",
+      "status": "READY",
+      "errorMessage": "",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "ODSC/2-SparkIntro-ColumnStats",
+  "id": "2F1RVQ9N4",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
