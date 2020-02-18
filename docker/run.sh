@@ -12,7 +12,7 @@ function installSpark() {
     echo "using curl to download spark 2.4.5"
     #mkdir ${PWD}/install
 
-    if [ ! -d "${PWD}/spark-${SPARK_VERSION}"]
+    if test ! -d "${PWD}/spark-${SPARK_VERSION}"
     then 
       curl -XGET http://mirror.metrocast.net/apache/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop2.7.tgz > ${PWD}/install/spark-2.4.5.tgz
       cd ${PWD}/install && tar -xvzf spark-2.4.5.tgz && rm spark-${SPARK_VERSION}.tgz
