@@ -35,6 +35,8 @@ services:
       retries: 10
     ports:
       - 8080:8080
+      - 4040:4040
+      - 4041:4041
     depends_on:
       - redis5
     networks:
