@@ -25,9 +25,11 @@ services:
       - ${PWD}/spark-2.4.5:/spark
     environment:
       - SPARK_HOME=/spark
+      - SPARK_SUBMIT_OPTIONS=--packages com.redislabs:spark-redis:2.4.0
       - ZEPPELIN_LOG_DIR=/logs/
       - ZEPPELIN_NOTEBOOK_DIR=/notebook
       - ZEPPELIN_ADDR=0.0.0.0
+      - ZEPPELIN_SPARK_MAXRESULT=10000
     healthcheck:
       interval: 5s
       retries: 10
