@@ -1,0 +1,71 @@
+{
+  "paragraphs": [
+    {
+      "text": "%spark\nimport spark.implicits._\nimport org.apache.spark.sql._\nimport org.apache.spark.sql.types._\nimport org.apache.spark.sql.functions._\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-18 23:36:49.549",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "import spark.implicits._\nimport org.apache.spark.sql._\nimport org.apache.spark.sql.types._\nimport org.apache.spark.sql.functions._\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1582068977482_590154632",
+      "id": "20200218-233617_860325146",
+      "dateCreated": "2020-02-18 23:36:17.482",
+      "dateStarted": "2020-02-18 23:36:49.667",
+      "dateFinished": "2020-02-18 23:36:52.027",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%spark\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-02-18 23:36:49.550",
+      "config": {},
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "apps": [],
+      "jobName": "paragraph_1582069009550_-1012020089",
+      "id": "20200218-233649_223766291",
+      "dateCreated": "2020-02-18 23:36:49.550",
+      "status": "READY",
+      "progressUpdateIntervalMs": 500
+    }
+  ],
+  "name": "3-ReloadAndPredictLogistically",
+  "id": "2F3D4HQRX",
+  "noteParams": {},
+  "noteForms": {},
+  "angularObjects": {
+    "md:shared_process": [],
+    "spark:shared_process": []
+  },
+  "config": {
+    "isZeppelinNotebookCronEnable": false
+  },
+  "info": {}
+}
