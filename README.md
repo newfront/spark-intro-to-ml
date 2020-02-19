@@ -59,3 +59,9 @@ spark.executor.memory 8g
 ## Checking Zeppelin and Updating Zeppelin
 1. The **Main Application** should now be running at http://localhost:8080/
 2. `docker exec -it redis5 redis-cli` should show `127.0.0.1:6379>` this should be a new install. Try inputting `info` to see the redid-server configuration.
+
+### Monitoring Redis as you run the Workshop Material
+The following command will let you view all commands hitting redis during the workshop
+~~~
+docker exec -it redis5 redis-cli monitor
+~~~
