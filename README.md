@@ -65,3 +65,8 @@ The following command will let you view all commands hitting redis during the wo
 ~~~
 docker exec -it redis5 redis-cli monitor
 ~~~
+
+## The Workshop
+1. Open up your Browser on http://localhost:8080 and you should see the Zeppelin Home Screen
+2. Click on the Notebook named **1-LoadAndQuery**. When this loads select the `spark` and `md` interpreters to attach to the notebook and then press the button at the top that says **Run All Paragraphs**
+3. This first note in the notebook will take you through to **2-LoadTransformAndCluster** and finally to **3-ReloadAndPredictLogistically**
