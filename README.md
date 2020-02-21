@@ -10,25 +10,6 @@ About Twilio: [Twilio](https://twilio.com)
 2. System Terminal (iTerm, Terminal, etc)
 3. Working Web Browser (Chrome or Firefox)
 
-### Technologies Used
-1. [Apache Zeppelin](https://zeppelin.apache.org/docs/latest/interpreter/spark.html)
-2. [Apache Spark](http://spark.apache.org/)
-3. [Redis](https://redis.io/)
-
-#### Spark 2.4.5
-- http://mirror.metrocast.net/apache/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz
-- (222 MB)
-
-#### Redis Docker Hub (v5.0.7)
-https://hub.docker.com/_/redis/
-
-#### Spark Redis (v2.4.0)
-https://github.com/RedisLabs/spark-redis
-
-### Datasets
-* Netflix Movies and Shows: https://www.kaggle.com/shivamb/netflix-shows
-* House Prices: https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data
-* GoodReads Books: https://www.kaggle.com/jealousleopard/goodreadsbooks
 
 ### Docker
 Install Docker Desktop (https://www.docker.com/products/docker-desktop)
@@ -70,3 +51,28 @@ docker exec -it redis5 redis-cli monitor
 1. Open up your Browser on http://localhost:8080 and you should see the Zeppelin Home Screen
 2. Click on the Notebook named **1-LoadAndQuery**. When this loads select the `spark` and `md` interpreters to attach to the notebook and then press the button at the top that says **Run All Paragraphs**
 3. This first note in the notebook will take you through to **2-LoadTransformAndCluster** and finally to **3-ReloadAndPredictLogistically**
+
+
+
+## Datasets and Technology Used: No need to download these. The install script will do it all for you.
+
+### Technologies Used
+1. [Apache Zeppelin](https://zeppelin.apache.org/docs/latest/interpreter/spark.html)
+2. [Apache Spark](http://spark.apache.org/)
+3. [Redis](https://redis.io/)
+
+#### Spark 2.4.5
+- http://mirror.metrocast.net/apache/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz
+- (222 MB)
+
+#### Redis Docker Hub (v5.0.7)
+https://hub.docker.com/_/redis/
+
+#### Spark Redis (v2.4.0)
+https://github.com/RedisLabs/spark-redis
+
+### Datasets
+* Netflix Movies and Shows: https://www.kaggle.com/shivamb/netflix-shows
+* House Prices: https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data
+* GoodReads Books: https://www.kaggle.com/jealousleopard/goodreadsbooks
+
