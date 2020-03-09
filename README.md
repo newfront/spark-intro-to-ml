@@ -5,7 +5,7 @@ Find me on Twitter: [@newfront](https://twitter.com/newfront)
 Find me on Medium [@newfrontcreative](https://medium.com/@newfrontcreative)
 About Twilio: [Twilio](https://twilio.com)
 
-## Runtime Requirments
+## Runtime Requirements
 1. Docker (at least 2 CPU cores and 8gb RAM)
 2. System Terminal (iTerm, Terminal, etc)
 3. Working Web Browser (Chrome or Firefox)
