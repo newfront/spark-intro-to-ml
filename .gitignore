@@ -21,4 +21,5 @@ docker/data/recommendations/*
 docker/data/__MACOSX
 docker/data/__MACOSX/*
 
-
+*.iml
+.idea/*

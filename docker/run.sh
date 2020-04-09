@@ -14,7 +14,7 @@ function installSpark() {
 
     if test ! -d "${PWD}/spark-${SPARK_VERSION}"
     then 
-      curl -XGET http://mirror.metrocast.net/apache/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop2.7.tgz > "${PWD}/install/spark-2.4.5.tgz"
+      curl -XGET "http://mirror.cc.columbia.edu/pub/software/apache/spark/spark-${SPARK_VERSION}/spark-${SPARK_VERSION}-bin-hadoop2.7.tgz" > "${PWD}/install/spark-2.4.5.tgz"
       cd "${PWD}/install" && tar -xvzf spark-2.4.5.tgz && rm spark-${SPARK_VERSION}.tgz
       mv spark-${SPARK_VERSION}-bin-hadoop2.7 ../spark-${SPARK_VERSION}
       cd ..

@@ -62,7 +62,7 @@ docker exec -it redis5 redis-cli monitor
 3. [Redis](https://redis.io/)
 
 #### Spark 2.4.5
-- http://mirror.metrocast.net/apache/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz
+- http://mirror.cc.columbia.edu/pub/software/apache/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz
 - (222 MB)
 
 #### Redis Docker Hub (v5.0.7)
