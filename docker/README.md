@@ -10,26 +10,6 @@ About Twilio: [Twilio](https://twilio.com)
 2. System Terminal (iTerm, Terminal, etc)
 3. Working Web Browser (Chrome or Firefox)
 
-### Technologies Used
-1. [Apache Zeppelin](https://zeppelin.apache.org/docs/latest/interpreter/spark.html)
-2. [Apache Spark](http://spark.apache.org/)
-3. [Redis](https://redis.io/)
-
-#### Spark 2.4.5
-- http://mirror.metrocast.net/apache/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz
-- (222 MB)
-
-#### Redis Docker Hub (v5.0.7)
-https://hub.docker.com/_/redis/
-
-#### Spark Redis (v2.4.0)
-https://github.com/RedisLabs/spark-redis
-
-### Datasets
-* Netflix Movies and Shows: https://www.kaggle.com/shivamb/netflix-shows
-* House Prices: https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data
-* GoodReads Books: https://www.kaggle.com/jealousleopard/goodreadsbooks
-
 ### Docker
 Install Docker Desktop (https://www.docker.com/products/docker-desktop)
 
@@ -65,6 +45,30 @@ Updated the following key/values
 1. **spark.cores.max** 2
 2. **spark.executor.memory** 8g
 
-#### Update the Dependencies (under the dependencies section)
-1. Add `com.redislabs:spark-redis:2.4.0`
+## Reference Material
+Below are a list of links and references to the underlying framework running within this multi-docker setup 
+
+### Technologies Used
+1. [Apache Zeppelin](https://zeppelin.apache.org/docs/latest/interpreter/spark.html)
+2. [Apache Spark](http://spark.apache.org/)
+3. [Redis](https://redis.io/)
+
+#### Spark 2.4.5
+This is already installed for you as part of the `./run.sh install` process and is provided for reference
+- http://mirror.cc.columbia.edu/pub/software/apache/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz
+- (222 MB)
+
+#### Redis Docker Hub (v5.0.7)
+https://hub.docker.com/_/redis/
+
+#### Spark Redis (v2.4.1)
+https://github.com/RedisLabs/spark-redis
+
+### Datasets
+* Netflix Movies and Shows: https://www.kaggle.com/shivamb/netflix-shows (Showcased in the Workshop)
+* House Prices: https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data (Fun dataset)
+* GoodReads Books: https://www.kaggle.com/jealousleopard/goodreadsbooks (Dataset for making Book Recommendations)
+
+### Update the Dependencies (under the dependencies section)
+1. Add `com.redislabs:spark-redis:2.4.1`
 2. Click `Save` and these settings will be applied to the Zeppelin Runtime.

@@ -10,7 +10,6 @@ About Twilio: [Twilio](https://twilio.com)
 2. System Terminal (iTerm, Terminal, etc)
 3. Working Web Browser (Chrome or Firefox)
 
-
 ### Docker
 Install Docker Desktop (https://www.docker.com/products/docker-desktop)
 
@@ -51,8 +50,6 @@ docker exec -it redis5 redis-cli monitor
 1. Open up your Browser on http://localhost:8080 and you should see the Zeppelin Home Screen
 2. Click on the Notebook named **1-LoadAndQuery**. When this loads select the `spark` and `md` interpreters to attach to the notebook and then press the button at the top that says **Run All Paragraphs**
 3. This first note in the notebook will take you through to **2-LoadTransformAndCluster** and finally to **3-ReloadAndPredictLogistically**
-
-
 
 ## Datasets and Technology Used: No need to download these. The install script will do it all for you.
 
