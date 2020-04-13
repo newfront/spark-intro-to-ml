@@ -763,7 +763,7 @@
       "progressUpdateIntervalMs": 500
     }
   ],
-  "name": "3-ReloadAndPredictLogistically",
+  "name": "4-SparkML-PredictLogistically",
   "id": "2F3D4HQRX",
   "noteParams": {},
   "noteForms": {},
