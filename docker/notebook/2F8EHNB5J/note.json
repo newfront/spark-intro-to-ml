@@ -42,9 +42,9 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n# Alas we have outgrown where we can go with Zeppelin. Streaming requires more of a controlled environment.\n\nPlease Head over to: https://github.com/newfront/odsc-east-2020-decision-intelligence/tree/master/spark-structured-streaming\n",
+      "text": "%md\n# Alas we have outgrown where we can go with Zeppelin. Streaming requires more of a controlled environment.\n\nPlease Head over to: https://github.com/newfront/spark-intro-to-ml/tree/master/streaming to complete the structured streaming portion of the training.\n",
       "user": "anonymous",
-      "dateUpdated": "2020-04-15 02:44:22.954",
+      "dateUpdated": "2020-04-26 23:36:00.854",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -69,7 +69,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eAlas we have outgrown where we can go with Zeppelin. Streaming requires more of a controlled environment.\u003c/h1\u003e\n\u003cp\u003ePlease Head over to: \u003ca href\u003d\"https://github.com/newfront/odsc-east-2020-decision-intelligence/tree/master/spark-structured-streaming\"\u003ehttps://github.com/newfront/odsc-east-2020-decision-intelligence/tree/master/spark-structured-streaming\u003c/a\u003e\u003c/p\u003e\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eAlas we have outgrown where we can go with Zeppelin. Streaming requires more of a controlled environment.\u003c/h1\u003e\n\u003cp\u003ePlease Head over to: \u003ca href\u003d\"https://github.com/newfront/spark-intro-to-ml/tree/master/streaming\"\u003ehttps://github.com/newfront/spark-intro-to-ml/tree/master/streaming\u003c/a\u003e to complete the structured streaming portion of the training.\u003c/p\u003e\n\u003c/div\u003e"
           }
         ]
       },
@@ -77,8 +77,49 @@
       "jobName": "paragraph_1586905472586_-838608092",
       "id": "20200414-230432_64230760",
       "dateCreated": "2020-04-14 23:04:32.586",
-      "dateStarted": "2020-04-15 02:44:22.959",
-      "dateFinished": "2020-04-15 02:44:22.969",
+      "dateStarted": "2020-04-26 23:36:00.855",
+      "dateFinished": "2020-04-26 23:36:00.873",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%md\n## Predicting KidSafe Content from Netflix Movies\n\n### Build the Jar\n~~~\nmvn clean verify\n~~~\n\n### Run the Spark App\n~~~bash\nexport SPARK_HOME\u003d/path/to/spark-2.4.5\n$SPARK_HOME/bin/spark-submit \\\n  --master \"local[8]\" \\\n  --class \"com.twilio.learn.PredictionStream\" \\\n  target/spark-redis-predict.jar \\\n  conf/app.yaml\n~~~\n\nAlternatively if SPARK_HOME is set and you have Spark-2.4.5 installed\n~~~\nscripts/run.sh\n~~~\n\n### Send Movies to be Predicted\nFirst open up a new terminal window and connect to the Redis docker instance\n~~~\ndocker exec -it redis5 redis-cli\n~~~\n\nNext open up another terminal window to monitor redis\n~~~\ndocker exec -it redis5 redis-cli monitor\n~~~\n\nLastly paste the following commands into the terminal\n~~~\nxadd v1:movies:test:kidSafe * show_id 80115338\nxadd v1:movies:test:kidSafe * show_id 80196367\n~~~\n\nYou should see the following\n~~~\n1586918227.329652 [0 172.23.0.1:42906] \"HMSET\" \"v1:movies:test:kidSafe:predict:80196367\" \"category\" \"Thrillers\" \"prediction\" \"0.0022742774331638237\" \"rating\" \"TV-MA\"\n1586918227.329962 [0 172.23.0.1:42862] \"HMSET\" \"v1:movies:test:kidSafe:predict:80115338\" \"category\" \"Kids\u0027 TV\" \"rating\" \"TV-Y\" \"prediction\" \"0.9772088004695866\"\n~~~",
+      "user": "anonymous",
+      "dateUpdated": "2020-04-26 23:36:20.951",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "markdown",
+          "editOnDblClick": true,
+          "completionKey": "TAB",
+          "completionSupport": false
+        },
+        "editorMode": "ace/mode/markdown",
+        "editorHide": true,
+        "tableHide": false
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "HTML",
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch2\u003ePredicting KidSafe Content from Netflix Movies\u003c/h2\u003e\n\u003ch3\u003eBuild the Jar\u003c/h3\u003e\n\u003cpre\u003e\u003ccode\u003emvn clean verify\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch3\u003eRun the Spark App\u003c/h3\u003e\n\u003cpre\u003e\u003ccode class\u003d\"bash\"\u003eexport SPARK_HOME\u003d/path/to/spark-2.4.5\n$SPARK_HOME/bin/spark-submit \\\n  --master \u0026quot;local[8]\u0026quot; \\\n  --class \u0026quot;com.twilio.learn.PredictionStream\u0026quot; \\\n  target/spark-redis-predict.jar \\\n  conf/app.yaml\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eAlternatively if SPARK_HOME is set and you have Spark-2.4.5 installed\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003escripts/run.sh\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch3\u003eSend Movies to be Predicted\u003c/h3\u003e\n\u003cp\u003eFirst open up a new terminal window and connect to the Redis docker instance\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003edocker exec -it redis5 redis-cli\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eNext open up another terminal window to monitor redis\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003edocker exec -it redis5 redis-cli monitor\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eLastly paste the following commands into the terminal\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003exadd v1:movies:test:kidSafe * show_id 80115338\nxadd v1:movies:test:kidSafe * show_id 80196367\n\u003c/code\u003e\u003c/pre\u003e\n\u003cp\u003eYou should see the following\u003c/p\u003e\n\u003cpre\u003e\u003ccode\u003e1586918227.329652 [0 172.23.0.1:42906] \u0026quot;HMSET\u0026quot; \u0026quot;v1:movies:test:kidSafe:predict:80196367\u0026quot; \u0026quot;category\u0026quot; \u0026quot;Thrillers\u0026quot; \u0026quot;prediction\u0026quot; \u0026quot;0.0022742774331638237\u0026quot; \u0026quot;rating\u0026quot; \u0026quot;TV-MA\u0026quot;\n1586918227.329962 [0 172.23.0.1:42862] \u0026quot;HMSET\u0026quot; \u0026quot;v1:movies:test:kidSafe:predict:80115338\u0026quot; \u0026quot;category\u0026quot; \u0026quot;Kids\u0026#39; TV\u0026quot; \u0026quot;rating\u0026quot; \u0026quot;TV-Y\u0026quot; \u0026quot;prediction\u0026quot; \u0026quot;0.9772088004695866\u0026quot;\n\u003c/code\u003e\u003c/pre\u003e\n\u003c/div\u003e"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1587944163086_-1044069155",
+      "id": "20200426-233603_906516229",
+      "dateCreated": "2020-04-26 23:36:03.086",
+      "dateStarted": "2020-04-26 23:36:20.952",
+      "dateFinished": "2020-04-26 23:36:20.977",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
