@@ -1,0 +1,29 @@
+sparkAppConfig:
+  appName: "spark-command-controller"
+  sparkHomeDir: "/usr/local/spark-2.4.0"
+  core:
+    spark.master: "local[*]"
+    spark.home.dir: "/usr/local/spark-2.4.0/"
+    spark.command.controller.extra.jars.dir: "/Users/shaines/git/voice-insights/spark_apps/spark-command-controller/jars/"
+    spark.io.compression.codec: "snappy"
+    spark.scheduler.mode: "FIFO"
+    spark.port.maxRetries: 64
+    spark.driver.cores: 2
+    spark.driver.memory: "2g"
+    spark.dynamicAllocation.enabled: false
+    spark.streaming.stopGracefullyOnShutdown: true
+    spark.submit.deployMode: "client"
+    spark.streaming.backpressure.enabled: true
+    spark.cores.max: 8
+    spark.sql.shuffle.partitions: 16
+    spark.executor.memory: "4g"
+    spark.executor.cores: 2
+    spark.sql.session.timeZone: "UTC"
+    spark.serializer: "org.apache.spark.serializer.KryoSerializer"
+    spark.sql.kafka.offsets.recorder.enabled: false
+    spark.sql.kafka.offsets.recorder.interval.minutes: 30
+    spark.sql.parquet.compression.codec: "snappy"
+    mapreduce.fileoutputcommitter.algorithm.version: 2
+    spark.redis.host: "localhost"
+    spark.redis.port: "6379"
+    spark.command.controller.checkpointLocation: "hdfs://localhost:9000/voiceinsights/spark/apps/command-controller/test"

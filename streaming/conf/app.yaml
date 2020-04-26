@@ -1,0 +1,24 @@
+sparkAppConfig:
+  appName: "streaming"
+  core:
+    spark.scheduler.mode: "FIFO"
+    spark.port.maxRetries: 64
+    spark.driver.cores: 2
+    spark.driver.memory: "2g"
+    spark.dynamicAllocation.enabled: false
+    spark.streaming.stopGracefullyOnShutdown: true
+    spark.submit.deployMode: "client"
+    spark.streaming.backpressure.enabled: true
+    spark.predict.model.dir: "/path/to/conf"
+    spark.sql.session.timeZone: "UTC"
+    spark.cores.max: 8
+    spark.sql.shuffle.partitions: 16
+    spark.executor.memory: "4g"
+    spark.executor.cores: 2
+    spark.serializer: "org.apache.spark.serializer.KryoSerializer"
+    spark.sql.parquet.compression.codec: "snappy"
+    spark.redis.host: localhost
+    spark.redis.port: 6379
+    spark.transformers.pipelineLocation: "conf/pipeline"
+    spark.transformers.modelLocation: "conf/lrm"
+

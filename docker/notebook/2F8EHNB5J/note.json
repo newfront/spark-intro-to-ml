@@ -1,48 +1,9 @@
 {
   "paragraphs": [
     {
-      "text": "%spark\nimport spark.implicits._\nimport org.apache.spark.sql._\nimport org.apache.spark.sql.types._\nimport org.apache.spark.sql.functions._\nimport org.apache.spark.ml.PipelineModel\n\nimport org.apache.spark.ml.Transformer\nimport org.apache.spark.ml.util.DefaultParamsWritable\nimport org.apache.spark.ml.util.DefaultParamsReadable\n\n\nclass RatingClassificationTransformer extends Transformer with DefaultParamsWritable {\n  val SafeForKids \u003d Seq(1.0, 6.0,8.0,9.0,11.0)\n  val SafeForMost \u003d Seq(0.0,4.0,2.0,12.0)\n  \n  override val uid: String \u003d \"ratingClass123\"\n  override def transformSchema(schema: org.apache.spark.sql.types.StructType): org.apache.spark.sql.types.StructType \u003d {\n    val idx \u003d schema.fieldIndex(\"rating_index\")\n    val field \u003d schema.fields(idx)\n    if (field.dataType !\u003d DoubleType) {\n      throw new Exception(s\"Input type ${field.dataType} did not match input type DoubleType\")\n    }\n    // Add the return field\n    schema.add(StructField(\"rating_class\", DoubleType, false))\n  }\n\n  override def copy(extra: org.apache.spark.ml.param.ParamMap): org.apache.spark.ml.Transformer \u003d defaultCopy(extra)\n\n  override def transform(df: Dataset[_]): DataFrame \u003d {\n    df.withColumn(\"rating_class\",\n      when(col(\"rating_index\").isInCollection(SafeForKids), 0.0D)\n        .when(col(\"rating_index\").isInCollection(SafeForMost), 1.0D)\n        .otherwise(2.0D))\n  }\n\n}\n\nclass IsKidSafeTransformer extends Transformer with DefaultParamsWritable {\n\n  override val uid: String \u003d \"kidSafeTransformer\"\n  override def transformSchema(schema: org.apache.spark.sql.types.StructType): org.apache.spark.sql.types.StructType \u003d {\n    val idx \u003d schema.fieldIndex(\"rating_class\")\n    val field \u003d schema.fields(idx)\n    if (field.dataType !\u003d DoubleType) {\n      throw new Exception(s\"Input type ${field.dataType} did not match input type DoubleType\")\n    }\n    // Add the return field\n    schema.add(StructField(\"rating_class_binary\", DoubleType, false))\n  }\n\n  override def copy(extra: org.apache.spark.ml.param.ParamMap): org.apache.spark.ml.Transformer \u003d defaultCopy(extra)\n\n  override def transform(df: Dataset[_]): DataFrame \u003d {\n    df.withColumn(\"label\", when(col(\"rating_class\").equalTo(0.0D), 1.0D).otherwise(.0D))\n  }\n\n}\n\nobject RatingClassificationTransformer extends DefaultParamsReadable[RatingClassificationTransformer]\nobject IsKidSafeTransformer extends DefaultParamsReadable[IsKidSafeTransformer]\n\nobject Transformers {\n  import org.apache.spark.ml.tuning.TrainValidationSplitModel\n  import org.apache.spark.ml.PipelineModel\n\n  val pipelineLocation: String \u003d \"file:///learn/pipeline/\"\n  val modelLocation: String \u003d \"file:///learn/lrm\"\n  lazy val defrostedPipeline: PipelineModel \u003d PipelineModel.load(pipelineLocation)\n  lazy val defrostedModel: TrainValidationSplitModel \u003d TrainValidationSplitModel.load(modelLocation)\n\n  def transform(df: DataFrame): DataFrame \u003d defrostedPipeline.transform(df)\n  def predict(df: DataFrame): DataFrame \u003d defrostedModel.transform(df)\n\n}\n\nval netflixCategoryDataWithRatingSchema \u003d \"`show_id` BIGINT,`category` STRING, `rating` STRING\"\nval netflixCategoryStructSchema \u003d StructType.fromDDL(netflixCategoryDataWithRatingSchema)\nval contentWithCategories \u003d spark.read\n  .format(\"org.apache.spark.sql.redis\")\n  .schema(netflixCategoryStructSchema)\n  .option(\"key.column\", \"show_id\")\n  .option(\"table\", \"netflix_category_rating\")\n  .load()",
+      "text": "%md\n# Building Your First Structured Streaming App\n1. We want to read a stream of show ids from Redis and label the show as safe or not for kids\n2. We will create a transformation pipeline that will extract our Movie metadata (ETL - for each row)\n3. We will then transform this data using our fitted Pipeline\n4. We will then feed the transformed data through our saved Model\n5. Lastly, we will see what is kid safe or not.\n",
       "user": "anonymous",
-      "dateUpdated": "2020-04-15 00:35:47.559",
-      "config": {
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "colWidth": 12.0,
-        "editorMode": "ace/mode/scala",
-        "fontSize": 9.0,
-        "results": {},
-        "enabled": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "SUCCESS",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "import spark.implicits._\nimport org.apache.spark.sql._\nimport org.apache.spark.sql.types._\nimport org.apache.spark.sql.functions._\nimport org.apache.spark.ml.PipelineModel\nimport org.apache.spark.ml.Transformer\nimport org.apache.spark.ml.util.DefaultParamsWritable\nimport org.apache.spark.ml.util.DefaultParamsReadable\ndefined class RatingClassificationTransformer\ndefined class IsKidSafeTransformer\ndefined object RatingClassificationTransformer\ndefined object IsKidSafeTransformer\ndefined object Transformers\nnetflixCategoryDataWithRatingSchema: String \u003d `show_id` BIGINT,`category` STRING, `rating` STRING\nnetflixCategoryStructSchema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(show_id,LongType,true), StructField(category,StringType,true), StructField(rating,StringType,tru..."
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1586904669634_1762600431",
-      "id": "20200414-225109_1690551938",
-      "dateCreated": "2020-04-14 22:51:09.634",
-      "dateStarted": "2020-04-15 00:35:47.574",
-      "dateFinished": "2020-04-15 00:35:50.023",
-      "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "%md\n# Building Your First Structured Streaming App (in the notebook)\n1. We want to read a stream of show ids from Redis and label the show as safe or not for kids\n2. We will create a transformation pipeline that will extract our Movie metadata (ETL - for each row)\n3. We will then transform this data using our fitted Pipeline\n4. We will then feed the transformed data through our saved Model\n5. Lastly, we will see what is kid safe or not.\n",
-      "user": "anonymous",
-      "dateUpdated": "2020-04-14 23:10:10.689",
+      "dateUpdated": "2020-04-26 23:31:09.164",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -67,7 +28,7 @@
         "msg": [
           {
             "type": "HTML",
-            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eBuilding Your First Structured Streaming App (in the notebook)\u003c/h1\u003e\n\u003col\u003e\n  \u003cli\u003eWe want to read a stream of show ids from Redis and label the show as safe or not for kids\u003c/li\u003e\n  \u003cli\u003eWe will create a transformation pipeline that will extract our Movie metadata (ETL - for each row)\u003c/li\u003e\n  \u003cli\u003eWe will then transform this data using our fitted Pipeline\u003c/li\u003e\n  \u003cli\u003eWe will then feed the transformed data through our saved Model\u003c/li\u003e\n  \u003cli\u003eLastly, we will see what is kid safe or not.\u003c/li\u003e\n\u003c/ol\u003e\n\u003c/div\u003e"
+            "data": "\u003cdiv class\u003d\"markdown-body\"\u003e\n\u003ch1\u003eBuilding Your First Structured Streaming App\u003c/h1\u003e\n\u003col\u003e\n  \u003cli\u003eWe want to read a stream of show ids from Redis and label the show as safe or not for kids\u003c/li\u003e\n  \u003cli\u003eWe will create a transformation pipeline that will extract our Movie metadata (ETL - for each row)\u003c/li\u003e\n  \u003cli\u003eWe will then transform this data using our fitted Pipeline\u003c/li\u003e\n  \u003cli\u003eWe will then feed the transformed data through our saved Model\u003c/li\u003e\n  \u003cli\u003eLastly, we will see what is kid safe or not.\u003c/li\u003e\n\u003c/ol\u003e\n\u003c/div\u003e"
           }
         ]
       },
@@ -75,48 +36,9 @@
       "jobName": "paragraph_1586904834595_-1407457828",
       "id": "20200414-225354_899057019",
       "dateCreated": "2020-04-14 22:53:54.596",
-      "dateStarted": "2020-04-14 23:10:10.690",
-      "dateFinished": "2020-04-14 23:10:10.710",
+      "dateStarted": "2020-04-26 23:31:09.164",
+      "dateFinished": "2020-04-26 23:31:09.180",
       "status": "FINISHED",
-      "progressUpdateIntervalMs": 500
-    },
-    {
-      "text": "%spark\nimport org.apache.spark.sql.streaming._\n\n// We need to store the checkpoints for exactly-once or at-most-once processing\n// this will store the metadata related to this Streaming operation\n// including the starting offsets for our data from (redis) in this case\n// as well as all records acknowledged as being commited to our final resting place (redis again it would turn out!)\nval checkpointLocation: String \u003d \"/learn/streaming/checkpoints/\"\n\n/* Create the Structure of the Data we will read from the Redis Stream */\nval streamDataDDL \u003d \"`show_id` BIGINT\"\nval netflixShowIdSchema \u003d StructType.fromDDL(streamDataDDL)\n\nval processingTimeTrigger \u003d Trigger.ProcessingTime(\"2 seconds\")\n\n// create the stream reader (this isn\u0027t active until we tell it to start())\nval inputStream: DataStreamReader \u003d spark\n    .readStream\n    .format(\"redis\")\n    .option(\"stream.keys\", \"v1:movies:test:kidSafe\")\n    .schema(netflixShowIdSchema)\n\n// load the streaming data from the Redis Stream\n// join to the static DataFrame (contentWithCategories) on the col show_id\n// apply our defrosted transformation Pipeline from part4\n// apply our trained LinearRegression model from part4 as a secondary transformation\n// write our results into memory - creates a SQL table called predictions\n\nval streamingQuery \u003d inputStream\n  .load()\n  .join(contentWithCategories, Seq(\"show_id\"))\n  .transform(Transformers.transform)\n  .transform(Transformers.predict)\n  .writeStream\n  .format(\"memory\")\n  .queryName(\"predictions\")\n  .outputMode(OutputMode.Append)\n  .trigger(processingTimeTrigger)\n  .start()\n\n// at this point our streaming query will be running\n// if you want to force it to process content\n\nstreamingQuery.processAllAvailable()\n\n\n",
-      "user": "anonymous",
-      "dateUpdated": "2020-04-15 00:40:43.489",
-      "config": {
-        "editorSetting": {
-          "language": "scala",
-          "editOnDblClick": false,
-          "completionKey": "TAB",
-          "completionSupport": true
-        },
-        "colWidth": 12.0,
-        "editorMode": "ace/mode/scala",
-        "fontSize": 9.0,
-        "results": {},
-        "enabled": true
-      },
-      "settings": {
-        "params": {},
-        "forms": {}
-      },
-      "results": {
-        "code": "ERROR",
-        "msg": [
-          {
-            "type": "TEXT",
-            "data": "java.lang.NullPointerException\n  at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)\n  at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)\n  at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)\n  at java.lang.reflect.Method.invoke(Method.java:498)\n  at org.apache.spark.ml.util.DefaultParamsReader$.loadParamsInstance(ReadWrite.scala:652)\n  at org.apache.spark.ml.Pipeline$SharedReadWrite$$anonfun$4.apply(Pipeline.scala:274)\n  at org.apache.spark.ml.Pipeline$SharedReadWrite$$anonfun$4.apply(Pipeline.scala:272)\n  at scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n  at scala.collection.TraversableLike$$anonfun$map$1.apply(TraversableLike.scala:234)\n  at scala.collection.IndexedSeqOptimized$class.foreach(IndexedSeqOptimized.scala:33)\n  at scala.collection.mutable.ArrayOps$ofRef.foreach(ArrayOps.scala:186)\n  at scala.collection.TraversableLike$class.map(TraversableLike.scala:234)\n  at scala.collection.mutable.ArrayOps$ofRef.map(ArrayOps.scala:186)\n  at org.apache.spark.ml.Pipeline$SharedReadWrite$.load(Pipeline.scala:272)\n  at org.apache.spark.ml.PipelineModel$PipelineModelReader.load(Pipeline.scala:348)\n  at org.apache.spark.ml.PipelineModel$PipelineModelReader.load(Pipeline.scala:342)\n  at org.apache.spark.ml.util.MLReadable$class.load(ReadWrite.scala:380)\n  at org.apache.spark.ml.PipelineModel$.load(Pipeline.scala:332)\n  at Transformers$.defrostedPipeline$lzycompute(\u003cconsole\u003e:106)\n  at Transformers$.defrostedPipeline(\u003cconsole\u003e:106)\n  at Transformers$.transform(\u003cconsole\u003e:109)\n  at $$$50a9225beeac265557e61f69d69d7d$$$$w$$anonfun$1.apply(\u003cconsole\u003e:270)\n  at $$$50a9225beeac265557e61f69d69d7d$$$$w$$anonfun$1.apply(\u003cconsole\u003e:270)\n  at org.apache.spark.sql.Dataset.transform(Dataset.scala:2579)\n  ... 146 elided\n"
-          }
-        ]
-      },
-      "apps": [],
-      "jobName": "paragraph_1586904987459_-1159734153",
-      "id": "20200414-225627_887116614",
-      "dateCreated": "2020-04-14 22:56:27.459",
-      "dateStarted": "2020-04-15 00:40:43.510",
-      "dateFinished": "2020-04-15 00:40:46.789",
-      "status": "ERROR",
       "progressUpdateIntervalMs": 500
     },
     {
@@ -161,18 +83,131 @@
       "progressUpdateIntervalMs": 500
     },
     {
-      "text": "%md\n",
+      "text": "%spark\n/*v1:movies:test:kidSafe:predict:80196367*/\n/* \"v1:movies:test:kidSafe:predict:80196367\" \"rating\" \"TV-MA\" \"category\" \"Thrillers\" \"prediction\" \"-9.175785295154684E-4\" */\n\nval predictionsFromStream \u003d \"`show_id` BIGINT, `rating` STRING, `category` STRING, `prediction` Double\"\nval predictionsSchema \u003d StructType.fromDDL(predictionsFromStream)\n\nval predictions \u003d spark.read\n  .format(\"org.apache.spark.sql.redis\")\n  .schema(predictionsSchema)\n  .option(\"key.column\", \"show_id\")\n  .option(\"table\", \"v1:movies:test:kidSafe:predict\")\n  .load()\n\npredictions.createOrReplaceTempView(\"predictions\")",
       "user": "anonymous",
-      "dateUpdated": "2020-04-15 02:44:22.927",
+      "dateUpdated": "2020-04-26 23:24:31.379",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {},
+        "editorSetting": {
+          "language": "scala",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/scala"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TEXT",
+            "data": "predictionsFromStream: String \u003d `show_id` BIGINT, `rating` STRING, `category` STRING, `prediction` Double\npredictionsSchema: org.apache.spark.sql.types.StructType \u003d StructType(StructField(show_id,LongType,true), StructField(rating,StringType,true), StructField(category,StringType,true), StructField(prediction,DoubleType,true))\npredictions: org.apache.spark.sql.DataFrame \u003d [show_id: bigint, rating: string ... 2 more fields]\n"
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1586918662927_1585624375",
+      "id": "20200415-024422_1643695131",
+      "dateCreated": "2020-04-15 02:44:22.927",
+      "dateStarted": "2020-04-26 23:24:31.396",
+      "dateFinished": "2020-04-26 23:24:32.190",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\nselect * from predictions",
+      "user": "anonymous",
+      "dateUpdated": "2020-04-26 23:30:09.563",
+      "config": {
+        "colWidth": 12.0,
+        "fontSize": 9.0,
+        "enabled": true,
+        "results": {
+          "0": {
+            "graph": {
+              "mode": "table",
+              "height": 300.0,
+              "optionOpen": false,
+              "setting": {
+                "table": {
+                  "tableGridState": {},
+                  "tableColumnTypeState": {
+                    "names": {
+                      "show_id": "string",
+                      "rating": "string",
+                      "category": "string",
+                      "prediction": "string"
+                    },
+                    "updated": false
+                  },
+                  "tableOptionSpecHash": "[{\"name\":\"useFilter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable filter for columns\"},{\"name\":\"showPagination\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable pagination for better navigation\"},{\"name\":\"showAggregationFooter\",\"valueType\":\"boolean\",\"defaultValue\":false,\"widget\":\"checkbox\",\"description\":\"Enable a footer for displaying aggregated values\"}]",
+                  "tableOptionValue": {
+                    "useFilter": false,
+                    "showPagination": false,
+                    "showAggregationFooter": false
+                  },
+                  "updated": false,
+                  "initialized": false
+                }
+              },
+              "commonSetting": {}
+            }
+          }
+        },
+        "editorSetting": {
+          "language": "sql",
+          "editOnDblClick": false,
+          "completionKey": "TAB",
+          "completionSupport": true
+        },
+        "editorMode": "ace/mode/sql"
+      },
+      "settings": {
+        "params": {},
+        "forms": {}
+      },
+      "results": {
+        "code": "SUCCESS",
+        "msg": [
+          {
+            "type": "TABLE",
+            "data": "show_id\trating\tcategory\tprediction\n81020728\tTV-PG\tTV Comedies\t0.005278283774816175\n80115338\tTV-Y\tKids\u0027 TV\t0.9934457482710757\n80196367\tTV-MA\tThrillers\t-9.175785295154684E-4\n"
+          },
+          {
+            "type": "TEXT",
+            "data": ""
+          }
+        ]
+      },
+      "apps": [],
+      "jobName": "paragraph_1587943256192_1338669003",
+      "id": "20200426-232056_647770475",
+      "dateCreated": "2020-04-26 23:20:56.192",
+      "dateStarted": "2020-04-26 23:30:09.584",
+      "dateFinished": "2020-04-26 23:30:09.814",
+      "status": "FINISHED",
+      "progressUpdateIntervalMs": 500
+    },
+    {
+      "text": "%sql\n",
+      "user": "anonymous",
+      "dateUpdated": "2020-04-26 23:21:32.557",
       "config": {},
       "settings": {
         "params": {},
         "forms": {}
       },
       "apps": [],
-      "jobName": "paragraph_1586918662927_1585624375",
-      "id": "20200415-024422_1643695131",
-      "dateCreated": "2020-04-15 02:44:22.927",
+      "jobName": "paragraph_1587943292556_2066902166",
+      "id": "20200426-232132_1386308780",
+      "dateCreated": "2020-04-26 23:21:32.556",
       "status": "READY",
       "progressUpdateIntervalMs": 500
     }
