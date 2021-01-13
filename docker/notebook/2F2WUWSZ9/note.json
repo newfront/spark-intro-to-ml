@@ -3,16 +3,16 @@
     {
       "text": "%spark\n// view all of the load configuration\nspark.sparkContext.getConf.getAll.foreach(println)\n",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:47:28.071",
+      "dateUpdated": "2021-01-13 21:29:22.525",
       "config": {
         "editorSetting": {
-          "language": "scala",
+          "language": "text",
           "editOnDblClick": false,
           "completionKey": "TAB",
           "completionSupport": true
         },
         "colWidth": 12.0,
-        "editorMode": "ace/mode/scala",
+        "editorMode": "ace/mode/text",
         "fontSize": 9.0,
         "results": {},
         "enabled": true
@@ -26,7 +26,7 @@
         "msg": [
           {
             "type": "TEXT",
-            "data": "(zeppelin.spark.concurrentSQL,false)\n(spark.driver.extraJavaOptions, -Dfile.encoding\u003dUTF-8 -Dlog4j.configuration\u003dfile:///zeppelin/conf/log4j.properties -Dzeppelin.log.file\u003d/logs//zeppelin-interpreter-spark--zeppelin.log)\n(zeppelin.pyspark.useIPython,true)\n(zeppelin.spark.maxResult,10000)\n(spark.redis.host,redis5)\n(spark.redis.port,6379)\n(zeppelin.R.cmd,R)\n(zeppelin.dep.localrepo,local-repo)\n(zeppelin.spark.importImplicit,true)\n(zeppelin.spark.useNew,true)\n(spark.cores.max,4)\n(spark.executor.memory,16g)\n(spark.driver.extraClassPath,:/zeppelin/interpreter/spark/*:/zeppelin/lib/interpreter/*::/zeppelin/interpreter/spark/spark-interpreter-0.8.2.jar)\n(spark.yarn.dist.archives,file:/spark/R/lib/sparkr.zip#sparkr)\n(spark.useHiveContext,true)\n(spark.driver.port,44613)\n(spark.master,local[*])\n(spark.submit.deployMode,client)\n(zeppelin.R.knitr,true)\n(spark.repl.class.uri,spark://zeppelin:44613/classes)\n(zeppelin.spark.useHiveContext,true)\n(spark.repl.local.jars,file:///root/.ivy2/jars/com.redislabs_spark-redis-2.4.1.jar,file:///root/.ivy2/jars/org.apache.commons_commons-pool2-2.0.jar,file:///root/.ivy2/jars/redis.clients_jedis-3.2.0.jar,file:///root/.ivy2/jars/org.scala-lang_scalap-2.11.12.jar,file:///root/.ivy2/jars/org.scala-lang_scala-compiler-2.11.12.jar,file:///root/.ivy2/jars/org.slf4j_slf4j-api-1.7.25.jar,file:///root/.ivy2/jars/org.scala-lang_scala-reflect-2.11.12.jar,file:///root/.ivy2/jars/org.scala-lang.modules_scala-xml_2.11-1.0.5.jar,file:///root/.ivy2/jars/org.scala-lang.modules_scala-parser-combinators_2.11-1.0.4.jar)\n(zeppelin.interpreter.localRepo,/zeppelin/local-repo/spark)\n(master,local[*])\n(spark.jars,file:///root/.ivy2/jars/com.redislabs_spark-redis-2.4.1.jar,file:///root/.ivy2/jars/org.apache.commons_commons-pool2-2.0.jar,file:///root/.ivy2/jars/redis.clients_jedis-3.2.0.jar,file:///root/.ivy2/jars/org.scala-lang_scalap-2.11.12.jar,file:///root/.ivy2/jars/org.scala-lang_scala-compiler-2.11.12.jar,file:///root/.ivy2/jars/org.slf4j_slf4j-api-1.7.25.jar,file:///root/.ivy2/jars/org.scala-lang_scala-reflect-2.11.12.jar,file:///root/.ivy2/jars/org.scala-lang.modules_scala-xml_2.11-1.0.5.jar,file:///root/.ivy2/jars/org.scala-lang.modules_scala-parser-combinators_2.11-1.0.4.jar,file:/zeppelin/interpreter/spark/spark-interpreter-0.8.2.jar)\n(zeppelin.pyspark.python,python)\n(zeppelin.spark.printREPLOutput,true)\n(zeppelin.spark.enableSupportedVersionCheck,true)\n(spark.executor.id,driver)\n(zeppelin.interpreter.output.limit,204800)\n(zeppelin.R.render.options,out.format \u003d \u0027html\u0027, comment \u003d NA, echo \u003d FALSE, results \u003d \u0027asis\u0027, message \u003d F, warning \u003d F, fig.retina \u003d 2)\n(zeppelin.R.image.width,100%)\n(zeppelin.spark.ui.hidden,false)\n(spark.driver.host,zeppelin)\n(spark.app.id,local-1587754078044)\n(spark.repl.class.outputDir,/tmp/spark5438728118647276620)\n(zeppelin.spark.sql.stacktrace,false)\n(spark.app.name,Zeppelin)\n(zeppelin.dep.additionalRemoteRepository,spark-packages,http://dl.bintray.com/spark-packages/maven,false;)\n(zeppelin.spark.sql.interpolation,false)\n(zeppelin.interpreter.max.poolsize,10)\n"
+            "data": "(spark.driver.port,36763)\n(zeppelin.spark.concurrentSQL,false)\n(spark.driver.extraJavaOptions, -Dfile.encoding\u003dUTF-8 -Dlog4j.configuration\u003dfile:///zeppelin/conf/log4j.properties -Dzeppelin.log.file\u003d/logs//zeppelin-interpreter-spark--zeppelin.log)\n(zeppelin.pyspark.useIPython,true)\n(zeppelin.spark.maxResult,10000)\n(spark.redis.host,redis5)\n(spark.redis.port,6379)\n(zeppelin.R.cmd,R)\n(zeppelin.dep.localrepo,local-repo)\n(zeppelin.spark.importImplicit,true)\n(zeppelin.spark.useNew,true)\n(spark.driver.extraClassPath,:/zeppelin/interpreter/spark/*:/zeppelin/lib/interpreter/*::/zeppelin/interpreter/spark/spark-interpreter-0.8.2.jar)\n(spark.yarn.dist.archives,file:/spark/R/lib/sparkr.zip#sparkr)\n(spark.useHiveContext,true)\n(spark.master,local[*])\n(spark.submit.deployMode,client)\n(zeppelin.R.knitr,true)\n(zeppelin.spark.useHiveContext,true)\n(spark.app.id,local-1610573385910)\n(spark.repl.local.jars,file:///root/.ivy2/jars/com.redislabs_spark-redis-2.4.1.jar,file:///root/.ivy2/jars/org.apache.commons_commons-pool2-2.0.jar,file:///root/.ivy2/jars/redis.clients_jedis-3.2.0.jar,file:///root/.ivy2/jars/org.scala-lang_scalap-2.11.12.jar,file:///root/.ivy2/jars/org.scala-lang_scala-compiler-2.11.12.jar,file:///root/.ivy2/jars/org.slf4j_slf4j-api-1.7.25.jar,file:///root/.ivy2/jars/org.scala-lang_scala-reflect-2.11.12.jar,file:///root/.ivy2/jars/org.scala-lang.modules_scala-xml_2.11-1.0.5.jar,file:///root/.ivy2/jars/org.scala-lang.modules_scala-parser-combinators_2.11-1.0.4.jar)\n(spark.executor.memory,2g)\n(zeppelin.interpreter.localRepo,/zeppelin/local-repo/spark)\n(master,local[*])\n(spark.jars,file:///root/.ivy2/jars/com.redislabs_spark-redis-2.4.1.jar,file:///root/.ivy2/jars/org.apache.commons_commons-pool2-2.0.jar,file:///root/.ivy2/jars/redis.clients_jedis-3.2.0.jar,file:///root/.ivy2/jars/org.scala-lang_scalap-2.11.12.jar,file:///root/.ivy2/jars/org.scala-lang_scala-compiler-2.11.12.jar,file:///root/.ivy2/jars/org.slf4j_slf4j-api-1.7.25.jar,file:///root/.ivy2/jars/org.scala-lang_scala-reflect-2.11.12.jar,file:///root/.ivy2/jars/org.scala-lang.modules_scala-xml_2.11-1.0.5.jar,file:///root/.ivy2/jars/org.scala-lang.modules_scala-parser-combinators_2.11-1.0.4.jar,file:/zeppelin/interpreter/spark/spark-interpreter-0.8.2.jar)\n(zeppelin.pyspark.python,python)\n(zeppelin.spark.printREPLOutput,true)\n(zeppelin.spark.enableSupportedVersionCheck,true)\n(spark.executor.id,driver)\n(zeppelin.interpreter.output.limit,204800)\n(zeppelin.R.render.options,out.format \u003d \u0027html\u0027, comment \u003d NA, echo \u003d FALSE, results \u003d \u0027asis\u0027, message \u003d F, warning \u003d F, fig.retina \u003d 2)\n(zeppelin.R.image.width,100%)\n(zeppelin.spark.ui.hidden,false)\n(spark.driver.host,zeppelin)\n(zeppelin.spark.sql.stacktrace,false)\n(spark.repl.class.uri,spark://zeppelin:36763/classes)\n(spark.cores.max,8)\n(spark.app.name,Zeppelin)\n(zeppelin.dep.additionalRemoteRepository,spark-packages,http://dl.bintray.com/spark-packages/maven,false;)\n(zeppelin.spark.sql.interpolation,false)\n(zeppelin.interpreter.max.poolsize,10)\n(spark.repl.class.outputDir,/tmp/spark100134506881496046)\n"
           }
         ]
       },
@@ -34,15 +34,15 @@
       "jobName": "paragraph_1581972430671_1558415188",
       "id": "20200217-204710_1857051027",
       "dateCreated": "2020-02-17 20:47:10.671",
-      "dateStarted": "2020-04-24 18:47:28.340",
-      "dateFinished": "2020-04-24 18:48:01.481",
+      "dateStarted": "2021-01-13 21:29:22.852",
+      "dateFinished": "2021-01-13 21:29:51.444",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Import, Clean and Save Dataset\nThis notebook uses the Netflix Movies and Shows dataset to show the following processes.\n1. Importing csv data\n2. Looking at the inferred schema - eg. what does Spark believe the value type of each column represents\n3. Creating temporary views (eg. `CREATE view netflix_raw`)\n4. Using Spark SQL interpreter to view the loaded table\n5. Understanding DataFrame schemas (Schema Inference and Declarative Schemas)",
       "user": "anonymous",
-      "dateUpdated": "2020-04-21 15:34:40.362",
+      "dateUpdated": "2021-01-13 21:29:56.203",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -75,15 +75,15 @@
       "jobName": "paragraph_1581965700808_1521096499",
       "id": "20200217-185500_1156513021",
       "dateCreated": "2020-02-17 18:55:00.808",
-      "dateStarted": "2020-04-21 15:34:40.504",
-      "dateFinished": "2020-04-21 15:34:43.431",
+      "dateStarted": "2021-01-13 21:29:56.206",
+      "dateFinished": "2021-01-13 21:29:58.873",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\n\nimport spark.implicits._\nimport org.apache.spark.sql._\nimport org.apache.spark.sql.functions._\nimport org.apache.spark.sql.types._\n\nval BaseFilePath \u003d \"file:///learn\"\nval NetflixTitlesRaw \u003d \"/netflix/netflix_titles_raw.csv\"\nval NetflixTitlesFormatted \u003d \"/netflix/netflix_titles.csv\"\n\nval netflixData \u003d spark.read\n  //.option(\"mode\", \"FAILFAST | DROPMALFORMED\")\n  .option(\"header\", \"true\")\n  .option(\"inferSchema\", \"true\")\n  .option(\"encoding\", \"UTF-8\")\n  .csv(s\"$BaseFilePath/$NetflixTitlesFormatted\")\n\n// see the underlying inferredSchema\nnetflixData.printSchema\nval inferredSchema \u003d netflixData.schema\nnetflixData.createOrReplaceTempView(\"netflix_raw\")\nspark.sql(\"show tables\").show\n",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:48:30.160",
+      "dateUpdated": "2021-01-13 21:30:01.427",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -114,15 +114,15 @@
       "jobName": "paragraph_1581908494839_-1724626913",
       "id": "20200217-030134_1605725597",
       "dateCreated": "2020-02-17 03:01:34.839",
-      "dateStarted": "2020-04-24 18:48:30.278",
-      "dateFinished": "2020-04-24 18:48:35.139",
+      "dateStarted": "2021-01-13 21:30:01.501",
+      "dateFinished": "2021-01-13 21:30:12.057",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\ninferredSchema",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:48:38.187",
+      "dateUpdated": "2021-01-13 21:30:17.724",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -161,15 +161,15 @@
       "jobName": "paragraph_1581966444140_1740028017",
       "id": "20200217-190724_560223682",
       "dateCreated": "2020-02-17 19:07:24.140",
-      "dateStarted": "2020-04-24 18:48:38.266",
-      "dateFinished": "2020-04-24 18:48:38.475",
+      "dateStarted": "2021-01-13 21:30:17.825",
+      "dateFinished": "2021-01-13 21:30:18.106",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval strictSchema \u003d StructType(\n    Seq(\n        StructField(\"show_id\",LongType,nullable\u003dfalse),\n        StructField(\"type\",StringType,nullable\u003dfalse),\n        StructField(\"title\",StringType,nullable\u003dfalse),\n        StructField(\"director\",StringType,true),\n        StructField(\"cast\",StringType,true),\n        StructField(\"country\", StringType, true),\n        StructField(\"date_added\",StringType,nullable\u003dfalse),\n        StructField(\"release_year\",IntegerType,nullable\u003dfalse),\n        StructField(\"rating\",StringType,true),\n        StructField(\"duration\",StringType,nullable\u003dfalse),\n        StructField(\"listed_in\",StringType,true),\n        StructField(\"description\",StringType,true)\n    )\n)\n\n",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:48:41.268",
+      "dateUpdated": "2021-01-13 21:30:20.472",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -200,15 +200,15 @@
       "jobName": "paragraph_1581966464357_880956063",
       "id": "20200217-190744_1521736757",
       "dateCreated": "2020-02-17 19:07:44.357",
-      "dateStarted": "2020-04-24 18:48:41.342",
-      "dateFinished": "2020-04-24 18:48:41.615",
+      "dateStarted": "2021-01-13 21:30:20.542",
+      "dateFinished": "2021-01-13 21:30:20.892",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Reimport the Netflix Movie Data using our StructType\nQ. Why would you use a Strict Schema vs Schema Inference?\n\nIn the next paragraph we do the following.\n1. Opt-out of schema inference\n2. Directly apply our `strictSchema` when parsing our CSV\n3. Lastly we create a new table called `netflix` which is backed by our `netflixDataStrict` DataFrame",
       "user": "anonymous",
-      "dateUpdated": "2020-04-21 15:34:47.100",
+      "dateUpdated": "2021-01-13 21:30:23.496",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -241,15 +241,15 @@
       "jobName": "paragraph_1581966682732_-71118177",
       "id": "20200217-191122_1931889542",
       "dateCreated": "2020-02-17 19:11:22.732",
-      "dateStarted": "2020-04-21 15:34:47.181",
-      "dateFinished": "2020-04-21 15:34:47.214",
+      "dateStarted": "2021-01-13 21:30:23.510",
+      "dateFinished": "2021-01-13 21:30:23.535",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\n//https://docs.databricks.com/data/data-sources/read-csv.html\nval netflixDataStrict \u003d spark.read\n  .option(\"header\", \"true\")\n  .option(\"sep\", \",\")\n  .option(\"quote\", \"\\\"\")\n  .option(\"inferSchema\", \"false\")\n  .schema(strictSchema)\n  .option(\"encoding\", \"UTF-8\")\n  .csv(s\"$BaseFilePath/$NetflixTitlesFormatted\")\n\nnetflixDataStrict.createOrReplaceTempView(\"netflix\")\n\nnetflixDataStrict.printSchema\n\nspark.sql(\"desc netflix\").show()\n\n",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:48:45.886",
+      "dateUpdated": "2021-01-13 21:30:26.002",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -280,15 +280,15 @@
       "jobName": "paragraph_1581966678231_-2105489626",
       "id": "20200217-191118_1287888444",
       "dateCreated": "2020-02-17 19:11:18.231",
-      "dateStarted": "2020-04-24 18:48:45.961",
-      "dateFinished": "2020-04-24 18:48:46.294",
+      "dateStarted": "2021-01-13 21:30:26.066",
+      "dateFinished": "2021-01-13 21:30:26.656",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sql\nselect * from netflix",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:48:49.555",
+      "dateUpdated": "2021-01-13 21:30:30.159",
       "config": {
         "editorSetting": {
           "language": "sql",
@@ -500,15 +500,15 @@
       "jobName": "paragraph_1581909404670_-2110768416",
       "id": "20200217-031644_1464153607",
       "dateCreated": "2020-02-17 03:16:44.670",
-      "dateStarted": "2020-04-24 18:48:49.639",
-      "dateFinished": "2020-04-24 18:48:50.247",
+      "dateStarted": "2021-01-13 21:30:30.248",
+      "dateFinished": "2021-01-13 21:30:31.103",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sql\nselect distinct(type) as distinct_type from netflix",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:48:53.707",
+      "dateUpdated": "2021-01-13 21:30:35.349",
       "config": {
         "editorSetting": {
           "language": "sql",
@@ -571,15 +571,15 @@
       "jobName": "paragraph_1581965566980_1345691952",
       "id": "20200217-185246_2018291567",
       "dateCreated": "2020-02-17 18:52:46.980",
-      "dateStarted": "2020-04-24 18:48:53.757",
-      "dateFinished": "2020-04-24 18:48:55.376",
+      "dateStarted": "2021-01-13 21:30:35.402",
+      "dateFinished": "2021-01-13 21:30:37.962",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sql\nselect count(*) as total, type from netflix group by type",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:48:57.351",
+      "dateUpdated": "2021-01-13 21:30:40.486",
       "config": {
         "editorSetting": {
           "language": "sql",
@@ -643,15 +643,15 @@
       "jobName": "paragraph_1581909417451_-1122812653",
       "id": "20200217-031657_990985109",
       "dateCreated": "2020-02-17 03:16:57.451",
-      "dateStarted": "2020-04-24 18:48:57.405",
-      "dateFinished": "2020-04-24 18:48:58.712",
+      "dateStarted": "2021-01-13 21:30:40.545",
+      "dateFinished": "2021-01-13 21:30:42.531",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Using Intersect and Except on Two DataFrames\nGain more control over conditional where clauses\n1. Sometimes reducing one DataFrame by another is easier than a complex query",
       "user": "anonymous",
-      "dateUpdated": "2020-04-21 15:34:53.310",
+      "dateUpdated": "2021-01-13 21:30:46.060",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -684,15 +684,15 @@
       "jobName": "paragraph_1581967683775_-77496244",
       "id": "20200217-192803_1317904078",
       "dateCreated": "2020-02-17 19:28:03.776",
-      "dateStarted": "2020-04-21 15:34:53.451",
-      "dateFinished": "2020-04-21 15:34:53.462",
+      "dateStarted": "2021-01-13 21:30:46.064",
+      "dateFinished": "2021-01-13 21:30:46.078",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nval cleanTypes \u003d netflixData.select(\"*\").where(col(\"type\").isInCollection(Seq(\"Movie\", \"TV Show\")))\n\nval cleaned \u003d cleanTypes.count\nval all \u003d netflixDataStrict.count\n\n// this can be more complex logic - for simplicity this is basically a `select * from netflix where id NOT IN (select show_id from netflix where type \u003d \u0027Movie\u0027)`\nval intersection \u003d netflixDataStrict.intersect(cleanTypes.where(col(\"type\").equalTo(\"Movie\")))\nval tvShows \u003d netflixDataStrict.except(intersection)\ntvShows.sort(asc(\"show_id\")).show()\n\ntvShows.sort(asc(\"show_id\")).createOrReplaceTempView(\"tv\")",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:49:02.340",
+      "dateUpdated": "2021-01-13 21:30:48.471",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -723,15 +723,15 @@
       "jobName": "paragraph_1581965467050_-1519055715",
       "id": "20200217-185107_1066365658",
       "dateCreated": "2020-02-17 18:51:07.050",
-      "dateStarted": "2020-04-24 18:49:02.388",
-      "dateFinished": "2020-04-24 18:49:05.962",
+      "dateStarted": "2021-01-13 21:30:48.537",
+      "dateFinished": "2021-01-13 21:30:54.161",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sql\nselect * from tv",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:49:09.462",
+      "dateUpdated": "2021-01-13 21:30:57.335",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -805,15 +805,15 @@
       "jobName": "paragraph_1587251903358_1103659864",
       "id": "20200418-231823_1617040396",
       "dateCreated": "2020-04-18 23:18:23.358",
-      "dateStarted": "2020-04-24 18:49:09.535",
-      "dateFinished": "2020-04-24 18:49:11.762",
+      "dateStarted": "2021-01-13 21:30:57.410",
+      "dateFinished": "2021-01-13 21:31:00.566",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n### Using a Subquery to find a SubSet of your Data\nThe following is an example of using subqueries in Spark. This subquery return one or more records of a single type.\n\nQ. What is the difference between a SubQuery and a Scalar SubQuery?\n\nIn the example below, we use the inner SQL query `select show_id from netflix where type \u003d \u0027MOVIE\u0027` to return a SET of ids as input to our `IN` clause. The outer query is then dependent on the result of the inner query to filter the Universal Set of Netflix content. Yielding the set of Shows instead of movies.",
       "user": "anonymous",
-      "dateUpdated": "2020-04-21 15:35:04.463",
+      "dateUpdated": "2021-01-13 21:31:45.778",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -846,15 +846,15 @@
       "jobName": "paragraph_1581968075623_-1063110976",
       "id": "20200217-193435_429853298",
       "dateCreated": "2020-02-17 19:34:35.623",
-      "dateStarted": "2020-04-21 15:35:04.584",
-      "dateFinished": "2020-04-21 15:35:04.626",
+      "dateStarted": "2021-01-13 21:31:45.784",
+      "dateFinished": "2021-01-13 21:31:45.807",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sql\nselect * from netflix where show_id NOT IN (\n  select show_id from netflix where type \u003d \u0027Movie\u0027\n  ) order by show_id asc limit 10",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:49:16.670",
+      "dateUpdated": "2021-01-13 21:31:48.436",
       "config": {
         "editorSetting": {
           "language": "sql",
@@ -928,15 +928,15 @@
       "jobName": "paragraph_1581967936821_-1370575092",
       "id": "20200217-193216_501874182",
       "dateCreated": "2020-02-17 19:32:16.821",
-      "dateStarted": "2020-04-24 18:49:16.731",
-      "dateFinished": "2020-04-24 18:49:18.474",
+      "dateStarted": "2021-01-13 21:31:48.489",
+      "dateFinished": "2021-01-13 21:31:50.179",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Investigate the Duration Attributes of Movies and TV Shows\n1. Given that a Movie has a set time in minutes, we should not see Seasons\n2. Given that a TV Show has one or more seasons, we should not see the number of minutes",
       "user": "anonymous",
-      "dateUpdated": "2020-04-21 15:35:06.439",
+      "dateUpdated": "2021-01-13 21:31:53.409",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -969,15 +969,15 @@
       "jobName": "paragraph_1581973431816_-1260532512",
       "id": "20200217-210351_296901661",
       "dateCreated": "2020-02-17 21:03:51.816",
-      "dateStarted": "2020-04-21 15:35:06.509",
-      "dateFinished": "2020-04-21 15:35:06.534",
+      "dateStarted": "2021-01-13 21:31:53.416",
+      "dateFinished": "2021-01-13 21:31:53.451",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nnetflixDataStrict.select(\"duration\").where(col(\"type\").equalTo(\"Movie\")).describe().show\nnetflixDataStrict.select(\"duration\").where(col(\"type\").equalTo(\"TV Show\")).describe().show",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:49:23.734",
+      "dateUpdated": "2021-01-13 21:31:55.812",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -1008,15 +1008,15 @@
       "jobName": "paragraph_1581909483884_-47288075",
       "id": "20200217-031803_1010784132",
       "dateCreated": "2020-02-17 03:18:03.884",
-      "dateStarted": "2020-04-24 18:49:23.781",
-      "dateFinished": "2020-04-24 18:49:24.922",
+      "dateStarted": "2021-01-13 21:31:55.866",
+      "dateFinished": "2021-01-13 21:31:57.074",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n### Enhancing the Dataset and Aggregations\nThe ability to easily group your data across new dimensions enables you to be a better explorer of your data.\n1. What is interesting to you? I think the ability to groupBy year/month/day and by categroy could be nice\n2. Let us add a target `DateTime` column as well as `year`, `month`, `day` to our initial DataFrame.\n3. We also should extract out the Numeric values for the `duration` of the netflix content. We can use this to isolate content of similar length - either number of seasons or length of content.\n4. Also we will need to look for potentially corrupt or null data, and decide what to do with it.\n",
       "user": "anonymous",
-      "dateUpdated": "2020-04-21 15:35:08.774",
+      "dateUpdated": "2021-01-13 21:32:00.083",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -1049,15 +1049,15 @@
       "jobName": "paragraph_1581968177838_-1759741770",
       "id": "20200217-193617_446931921",
       "dateCreated": "2020-02-17 19:36:17.838",
-      "dateStarted": "2020-04-21 15:35:08.860",
-      "dateFinished": "2020-04-21 15:35:08.884",
+      "dateStarted": "2021-01-13 21:32:00.090",
+      "dateFinished": "2021-01-13 21:32:00.107",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nimport org.apache.spark.sql.functions._\n\nval netflixWithTimeDimension \u003d netflixDataStrict\n  .withColumn(\"duration_type\",\n    when(col(\"type\").equalTo(\"Movie\"), 0)\n    .otherwise(1))\n  .withColumn(\"duration_numeric\",\n    when(col(\"type\").equalTo(\"Movie\"), regexp_replace(col(\"duration\"), \"\\\\ min\", \"\"))\n    .otherwise(regexp_replace(col(\"duration\"), \"\\\\Season|\\\\Seasons\", \"\"))\n    .cast(\"Double\"))\n  .withColumn(\"datetime\", to_timestamp(\n      trim(col(\"date_added\")), \"MMMMM dd, yyyy\")\n      )\n  .withColumn(\"release_month\", date_format(col(\"datetime\"), \"M\")\n  .cast(\"Double\"))\n  .withColumn(\"release_day\", date_format(col(\"datetime\"), \"d\")\n  .cast(\"Double\"))\n\n// leaning on spark\u0027s ability to generate and use the Data Description Language (DDL) enables us \n// to use the \u0027steal-the-schema\u0027 pattern. Which can be used to define a strict schema for extraction from a Redis Hash\n// in later places\nval newTableDDL \u003d netflixWithTimeDimension.schema.toDDL\n",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:49:29.921",
+      "dateUpdated": "2021-01-13 21:32:03.201",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -1088,15 +1088,15 @@
       "jobName": "paragraph_1581910487758_-377633272",
       "id": "20200217-033447_744550695",
       "dateCreated": "2020-02-17 03:34:47.758",
-      "dateStarted": "2020-04-24 18:49:29.984",
-      "dateFinished": "2020-04-24 18:49:30.343",
+      "dateStarted": "2021-01-13 21:32:03.255",
+      "dateFinished": "2021-01-13 21:32:03.753",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nnetflixWithTimeDimension\n  .select(\"rating\")\n  .where(col(\"rating\").isNull)\n  .count",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:49:33.696",
+      "dateUpdated": "2021-01-13 21:32:06.747",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -1127,15 +1127,15 @@
       "jobName": "paragraph_1586639954516_-225644047",
       "id": "20200411-211914_497568978",
       "dateCreated": "2020-04-11 21:19:14.516",
-      "dateStarted": "2020-04-24 18:49:33.745",
-      "dateFinished": "2020-04-24 18:49:34.212",
+      "dateStarted": "2021-01-13 21:32:06.797",
+      "dateFinished": "2021-01-13 21:32:07.263",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nnetflixWithTimeDimension\n  .select(\"date_added\")\n  .where(col(\"date_added\").isNull)\n  .count",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:49:36.484",
+      "dateUpdated": "2021-01-13 21:32:08.811",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -1166,15 +1166,15 @@
       "jobName": "paragraph_1586638860826_-1765392631",
       "id": "20200411-210100_447360214",
       "dateCreated": "2020-04-11 21:01:00.826",
-      "dateStarted": "2020-04-24 18:49:36.538",
-      "dateFinished": "2020-04-24 18:49:36.825",
+      "dateStarted": "2021-01-13 21:32:08.876",
+      "dateFinished": "2021-01-13 21:32:09.282",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nnetflixWithTimeDimension\n  .where(col(\"date_added\").isNotNull)\n  .na.fill(\"UR\", Seq(\"rating\"))\n  .createOrReplaceTempView(\"netflix_dates\")",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:49:39.306",
+      "dateUpdated": "2021-01-13 21:32:10.860",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -1200,15 +1200,15 @@
       "jobName": "paragraph_1581968694741_2087947693",
       "id": "20200217-194454_777161162",
       "dateCreated": "2020-02-17 19:44:54.741",
-      "dateStarted": "2020-04-24 18:49:39.358",
-      "dateFinished": "2020-04-24 18:49:39.596",
+      "dateStarted": "2021-01-13 21:32:10.906",
+      "dateFinished": "2021-01-13 21:32:11.250",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sql\nselect min(release_month) as min_month, max(release_month) as max_month from netflix_dates",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:49:41.267",
+      "dateUpdated": "2021-01-13 21:32:13.193",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -1272,15 +1272,15 @@
       "jobName": "paragraph_1586637974607_373046781",
       "id": "20200411-204614_1115051632",
       "dateCreated": "2020-04-11 20:46:14.608",
-      "dateStarted": "2020-04-24 18:49:41.319",
-      "dateFinished": "2020-04-24 18:49:41.776",
+      "dateStarted": "2021-01-13 21:32:13.242",
+      "dateFinished": "2021-01-13 21:32:14.046",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## What do we know about the properties of the data?\nWe can spend a lot of time looking at the properties of each Column of our DataFrame. Let us look at generating quick descriptions across our DataFrame\u0027s.\n1. Use the `DataFrame.describe()` function to generate columnar statistics across all rows.\n2. Use the `spark.sql(\"desc netflix_dates\").show()` to view the SQL table defined on the DataFrame.",
       "user": "anonymous",
-      "dateUpdated": "2020-04-21 15:35:12.478",
+      "dateUpdated": "2021-01-13 21:32:17.089",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1313,15 +1313,15 @@
       "jobName": "paragraph_1586634930315_442433859",
       "id": "20200411-195530_1456501908",
       "dateCreated": "2020-04-11 19:55:30.315",
-      "dateStarted": "2020-04-21 15:35:12.561",
-      "dateFinished": "2020-04-21 15:35:12.584",
+      "dateStarted": "2021-01-13 21:32:17.090",
+      "dateFinished": "2021-01-13 21:32:17.111",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\nnetflixWithTimeDimension.describe().createOrReplaceTempView(\"data_properties\")\nspark.sql(\"desc netflix_dates\").createOrReplaceTempView(\"table_properties\")",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:49:45.512",
+      "dateUpdated": "2021-01-13 21:32:19.556",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1347,15 +1347,15 @@
       "jobName": "paragraph_1586634772306_102202303",
       "id": "20200411-195252_1571666509",
       "dateCreated": "2020-04-11 19:52:52.306",
-      "dateStarted": "2020-04-24 18:49:45.556",
-      "dateFinished": "2020-04-24 18:49:46.972",
+      "dateStarted": "2021-01-13 21:32:19.613",
+      "dateFinished": "2021-01-13 21:32:21.760",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sql\nselect * from table_properties",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:49:48.888",
+      "dateUpdated": "2021-01-13 21:32:23.971",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -1420,15 +1420,15 @@
       "jobName": "paragraph_1586635364964_-1552114829",
       "id": "20200411-200244_1615770166",
       "dateCreated": "2020-04-11 20:02:44.964",
-      "dateStarted": "2020-04-24 18:49:48.931",
-      "dateFinished": "2020-04-24 18:49:48.952",
+      "dateStarted": "2021-01-13 21:32:24.016",
+      "dateFinished": "2021-01-13 21:32:24.052",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sql\nselect * from data_properties",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:49:51.375",
+      "dateUpdated": "2021-01-13 21:32:26.267",
       "config": {
         "colWidth": 6.0,
         "fontSize": 9.0,
@@ -1507,15 +1507,15 @@
       "jobName": "paragraph_1586634854956_587819243",
       "id": "20200411-195414_686381839",
       "dateCreated": "2020-04-11 19:54:14.956",
-      "dateStarted": "2020-04-24 18:49:51.422",
-      "dateFinished": "2020-04-24 18:49:51.473",
+      "dateStarted": "2021-01-13 21:32:26.314",
+      "dateFinished": "2021-01-13 21:32:26.380",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%sql\nselect duration, duration_type, duration_numeric from netflix_dates",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:49:54.931",
+      "dateUpdated": "2021-01-13 21:32:30.063",
       "config": {
         "colWidth": 12.0,
         "fontSize": 9.0,
@@ -1580,15 +1580,15 @@
       "jobName": "paragraph_1586639701725_-413191454",
       "id": "20200411-211501_2049159895",
       "dateCreated": "2020-04-11 21:15:01.725",
-      "dateStarted": "2020-04-24 18:49:54.982",
-      "dateFinished": "2020-04-24 18:49:55.168",
+      "dateStarted": "2021-01-13 21:32:30.116",
+      "dateFinished": "2021-01-13 21:32:30.348",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Saving your hardwork into Redis\n1. Saving the Data as Binary (Serialized) or not Serialized\n2. Look at the underlying Redis Data (keys *)\n3. Debug the Object size",
       "user": "anonymous",
-      "dateUpdated": "2020-04-21 15:35:16.072",
+      "dateUpdated": "2021-01-13 21:32:33.723",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -1621,15 +1621,15 @@
       "jobName": "paragraph_1581973751742_-492723057",
       "id": "20200217-210911_612088093",
       "dateCreated": "2020-02-17 21:09:11.742",
-      "dateStarted": "2020-04-21 15:35:16.151",
-      "dateFinished": "2020-04-21 15:35:16.167",
+      "dateStarted": "2021-01-13 21:32:33.729",
+      "dateFinished": "2021-01-13 21:32:33.746",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\n// write the updated data to redis\n// use binary serialization to reduce the cost of storing this data in redis\nnetflixWithTimeDimension\n  .write\n  .format(\"org.apache.spark.sql.redis\")\n  .mode(\"overwrite\")      \n  .option(\"table\", \"netflix\")\n  .option(\"model\", \"binary\")\n  .option(\"key.column\", \"show_id\")\n  .save()",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:49:59.693",
+      "dateUpdated": "2021-01-13 21:32:36.663",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -1655,15 +1655,15 @@
       "jobName": "paragraph_1581969862034_172107177",
       "id": "20200217-200422_822772128",
       "dateCreated": "2020-02-17 20:04:22.034",
-      "dateStarted": "2020-04-24 18:49:59.729",
-      "dateFinished": "2020-04-24 18:50:00.748",
+      "dateStarted": "2021-01-13 21:32:36.709",
+      "dateFinished": "2021-01-13 21:32:38.516",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%spark\n// the non-binary model type will save all the fields of the data to a hash map and use the show_id as the redis key\n// you can use the .option(\"ttl\", 300) to have the data expire in 300 seconds\nval naFilled \u003d spark.sql(\"select * from netflix_dates\")\nnaFilled\n  .write\n  .format(\"org.apache.spark.sql.redis\")\n  .option(\"table\", \"netflix_norm\")\n  .option(\"key.column\", \"show_id\")\n  //.option(\"ttl\", 300)\n  //.mode(\"errorIfExists\")\n  .mode(\"overwrite\")\n  .save()",
       "user": "anonymous",
-      "dateUpdated": "2020-04-24 18:50:03.788",
+      "dateUpdated": "2021-01-13 21:32:40.819",
       "config": {
         "editorSetting": {
           "language": "scala",
@@ -1694,15 +1694,15 @@
       "jobName": "paragraph_1581973864830_-1492280563",
       "id": "20200217-211104_1888754872",
       "dateCreated": "2020-02-17 21:11:04.830",
-      "dateStarted": "2020-04-24 18:50:03.830",
-      "dateFinished": "2020-04-24 18:50:04.671",
+      "dateStarted": "2021-01-13 21:32:40.870",
+      "dateFinished": "2021-01-13 21:32:42.695",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
     {
       "text": "%md\n## Let us inspect the data using Redis CLI\n1. Open up a new terminal window. `docker exec -it redis5 redis-cli`\n2. View all of the Keys. `keys *`\n3. Take a look at the Serialized Size of the Data. `debug object netflix_norm:80123742` and `debug object netflix:80123742`\n4. If you want to remove all keys `flushall`. Note: Flushall will delete everything and let you start over",
       "user": "anonymous",
-      "dateUpdated": "2020-04-21 15:35:21.107",
+      "dateUpdated": "2021-01-13 21:32:45.450",
       "config": {
         "tableHide": false,
         "editorSetting": {
@@ -1735,8 +1735,8 @@
       "jobName": "paragraph_1581968806861_649279696",
       "id": "20200217-194646_1512046072",
       "dateCreated": "2020-02-17 19:46:46.861",
-      "dateStarted": "2020-04-21 15:35:21.173",
-      "dateFinished": "2020-04-21 15:35:21.197",
+      "dateStarted": "2021-01-13 21:32:45.457",
+      "dateFinished": "2021-01-13 21:32:45.475",
       "status": "FINISHED",
       "progressUpdateIntervalMs": 500
     },
@@ -1815,6 +1815,7 @@
   "noteParams": {},
   "noteForms": {},
   "angularObjects": {
+    "md:shared_process": [],
     "spark:shared_process": []
   },
   "config": {
