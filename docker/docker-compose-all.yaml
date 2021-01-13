@@ -22,7 +22,7 @@ services:
       - ${PWD}/notebook:/notebook
       - ${PWD}/logs:/logs
       - ${PWD}/data:/learn
-      - ${PWD}/spark-2.4.5:/spark
+      - ${PWD}/spark-${SPARK_VERSION}:/spark
     environment:
       - SPARK_HOME=/spark
       - SPARK_SUBMIT_OPTIONS=--packages com.redislabs:spark-redis:2.4.1
