@@ -74,10 +74,10 @@ https://github.com/RedisLabs/spark-redis
 * GoodReads Books: https://www.kaggle.com/jealousleopard/goodreadsbooks
 
 ### Full Training Videos (Free)
-[Getting Ready - Intro to Zeppelin](https://bit.ly/2N2l6QB)
-[Part 1 - Spark Basics](https://bit.ly/2XBsq7V)
-[Part 2 - Exploratory Data Analysis](https://bit.ly/2N3T9YH)
-[Part 3 - Feature Engineering](https://bit.ly/3qgBECx)
-[Part 4 - Regression Techniques with Linear and Logistic Regression](https://bit.ly/2N1PavI)
-[Part 5 - Streaming Predictions](https://bit.ly/2N1PlHo)
+1. [Getting Ready - Intro to Zeppelin](https://bit.ly/2N2l6QB)
+2. [Part 1 - Spark Basics](https://bit.ly/2XBsq7V)
+3. [Part 2 - Exploratory Data Analysis](https://bit.ly/2N3T9YH)
+4. [Part 3 - Feature Engineering](https://bit.ly/3qgBECx)
+5. [Part 4 - Regression Techniques with Linear and Logistic Regression](https://bit.ly/2N1PavI)
+6. [Part 5 - Streaming Predictions](https://bit.ly/2N1PlHo)
 
