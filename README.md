@@ -59,7 +59,7 @@ docker exec -it redis5 redis-cli monitor
 3. [Redis](https://redis.io/)
 
 #### Spark 2.4.5
-- http://mirror.cc.columbia.edu/pub/software/apache/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz
+- https://archive.apache.org/dist/spark/spark-2.4.5/spark-2.4.5-bin-hadoop2.7.tgz
 - (222 MB)
 
 #### Redis Docker Hub (v5.0.7)
@@ -72,4 +72,12 @@ https://github.com/RedisLabs/spark-redis
 * Netflix Movies and Shows: https://www.kaggle.com/shivamb/netflix-shows
 * House Prices: https://www.kaggle.com/c/house-prices-advanced-regression-techniques/data
 * GoodReads Books: https://www.kaggle.com/jealousleopard/goodreadsbooks
+
+### Full Training Videos (Free)
+[Getting Ready - Intro to Zeppelin](https://bit.ly/2N2l6QB)
+[Part 1 - Spark Basics](https://bit.ly/2XBsq7V)
+[Part 2 - Exploratory Data Analysis](https://bit.ly/2N3T9YH)
+[Part 3 - Feature Engineering](https://bit.ly/3qgBECx)
+[Part 4 - Regression Techniques with Linear and Logistic Regression](https://bit.ly/2N1PavI)
+[Part 5 - Streaming Predictions](https://bit.ly/2N1PlHo)
 
